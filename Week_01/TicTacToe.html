@@ -42,7 +42,7 @@
           cell.classList.add("cell")
           cell.textContent = pattern[size*i+j] == 2 ? "X":
                               pattern[size*i+j] == 1 ? "O": ""
-          cell.addEventListener("click", ()=>{move(i,j)})
+          cell.addEventListener("click", ()=>{userMove(i,j)})
           board.appendChild(cell)
         }
         board.appendChild(document.createElement("br"))
@@ -50,12 +50,31 @@
       console.log(bestChoice(pattern, color))
     }
  
-    // 在(i, j)位置交替落在
+    // 在(i, j)位置交替落子
     function move(i, j) {
       pattern[size*i+j] = color
       if(check(pattern, color)) alert(color == 2 ? "X is winner":"O is winner")
       color = 3-color // 落子切换
       if(willWin(pattern, color)) console.log(color == 2 ? "X will win":"O will win")
+      show(pattern)
+    }
+
+    // 玩家落子
+    function userMove(i, j) {
+      pattern[size*i+j] = color
+      if(check(pattern, color)) alert(color == 2 ? "X is winner":"O is winner")
+      color = 3-color
+      computerMove()
+    }
+
+    // 电脑落子
+    function computerMove() {
+      let computerChoice = bestChoice(pattern, color)
+      if(computerChoice.point) {
+        pattern[computerChoice.point[0]*size + computerChoice.point[1]] = color
+      }
+      if(check(pattern, color)) alert(color == 2 ? "X is winner":"O is winner")
+      color = 3-color
       show(pattern)
     }
 
