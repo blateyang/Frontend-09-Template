@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>红绿灯</title>
+  <style>
+    div {
+      display: inline-block;
+      margin: 30px;
+      width: 100px;
+      height: 100px;
+      border: 1px solid white;
+      border-radius: 50px;
+      background-color: grey;
+    }
+
+    .red.light {
+      background-color: red;
+    }
+    .green.light {
+      background-color: green;
+    }
+    .yellow.light {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div class="red light"></div>
+  <div class="green light"></div>
+  <div class="yellow light"></div>
+  <button>next</button>
+  <script>
+    function red() {
+      let lights = document.getElementsByTagName("div")
+      for(let e of lights) {
+        e.classList.remove("light")
+      }
+      let light = document.getElementsByClassName("red")[0]
+      light.classList.add("light")
+    }
+
+    function green() {
+      let lights = document.getElementsByTagName("div")
+      for(let e of lights) {
+        e.classList.remove("light")
+      }
+      let light = document.getElementsByClassName("green")[0]
+      light.classList.add("light")
+    }
+
+    function yellow() {
+      let lights = document.getElementsByTagName("div")
+      for(let e of lights) {
+        e.classList.remove("light")
+      }
+      let light = document.getElementsByClassName("yellow")[0]
+      light.classList.add("light")
+    }
+
+    function goByCallback() {
+      red()
+      setTimeout(()=>{
+        green()
+        setTimeout(()=>{
+          yellow()
+          setTimeout(()=>{
+            go()
+          }, 2000)
+        }, 2000)
+      }, 2000)
+    }
+
+    function sleep(time) {
+      return new Promise((resolve, reject) => {
+        setTimeout(resolve, time)
+      })
+    }
+
+    function goByPromise() {
+      red()
+      sleep(2000).then(()=>{
+        green()
+        return sleep(2000)
+      }).then(()=>{
+        yellow()
+        return sleep(2000)
+      }).then(goByPromise)
+    }
+
+    async function goByAsync() {
+      red()
+      await sleep(2000)
+      green() 
+      await sleep(2000)
+      yellow()
+      await sleep(2000)
+      goByAsync()
+    }
+
+    function next() {
+      return new Promise((resolve, reject)=>{
+        document.getElementsByTagName("button")[0].addEventListener("click", resolve, {once: true})
+      })
+    }
+
+    async function goByButton() {
+      red()
+      await next()
+      green() 
+      await next()
+      yellow()
+      await next()
+      goByButton()
+    }
+
+    goByButton()
+
+    // 异步生成器 async function* 和for await of 配合使用
+    async function* counter() {
+      let i = 0
+      while(true) {
+        await sleep(1000)
+        yield i++
+      }
+    }
+
+    // (async function() {
+    //   for await(let v of counter()) {
+    //     console.log(v)
+    //   }
+    // })()
+  </script>
+</body>
+</html>
