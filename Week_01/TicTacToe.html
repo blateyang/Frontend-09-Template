@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TicTacToe</title>
+  <style>
+    .cell {
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+      background-color: green;
+      border: 1px solid white;
+      line-height: 100px;
+      font-size: 50px;
+      vertical-align: middle;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="board"></div>
+  <script>
+    let pattern = [
+      // [0, 0, 0],
+      // [0, 0, 0],
+      // [0, 0, 0]
+      0, 0, 0,
+      0, 0, 0,
+      0, 0, 0
+    ]
+    let color = 1 // 2:X,1:O,0:""
+    let size = 3
+    show(pattern)
+    // 重绘棋盘
+    function show(pattern) {
+      let board = document.getElementById("board")
+      board.innerHTML = ""
+      for(let i=0; i<size; i++) {
+        for(let j=0; j<size; j++) {
+          let cell = document.createElement("div")
+          cell.classList.add("cell")
+          cell.textContent = pattern[size*i+j] == 2 ? "X":
+                              pattern[size*i+j] == 1 ? "O": ""
+          cell.addEventListener("click", ()=>{move(i,j)})
+          board.appendChild(cell)
+        }
+        board.appendChild(document.createElement("br"))
+      }
+      console.log(bestChoice(pattern, color))
+    }
+ 
+    // 在(i, j)位置交替落在
+    function move(i, j) {
+      pattern[size*i+j] = color
+      if(check(pattern, color)) alert(color == 2 ? "X is winner":"O is winner")
+      color = 3-color // 落子切换
+      if(willWin(pattern, color)) console.log(color == 2 ? "X will win":"O will win")
+      show(pattern)
+    }
+
+    // 判定胜负
+    function check(pattern, color) {
+      // 判定行
+      for(let i=0; i<size; i++) {
+        let win = true
+        for(let j=0; j<size; j++) {
+          if(pattern[size*i+j] != color) {
+            win = false
+          }
+        }
+        if(win) return true
+      }
+      // 判定列
+      for(let i=0; i<size; i++) {
+        let win = true
+        for(let j=0; j<size; j++) {
+          if(pattern[size*j+i] != color) {
+            win = false
+          }
+        }
+        if(win) return true
+      }   
+      // 判定主对角线
+      {
+        win = true
+        for(let i=0; i<size; i++) {
+          if(pattern[size*i+i] != color) {
+            win = false
+          }
+        }
+        if(win) return true
+      }
+      // 判定次对角线
+      {
+        win = true
+        for(let i=0; i<size; i++) {
+          if(pattern[size*i+size-1-i] != color) {
+            win = false
+          }
+        }
+        if(win)  return true
+      }
+    }
+
+    function copy(pattern) {
+//      return JSON.parse(JSON.stringify(pattern))
+      return Object.create(pattern)
+    }
+
+    // 预测是否要赢，返回要赢该走的位置
+    function willWin(pattern, color) {
+      for(let i=0; i<size; i++) {
+        for(let j=0; j<size; j++) {
+          if(pattern[size*i+j]) {
+            continue
+          }
+          let patternCopy = copy(pattern)
+          patternCopy[size*i+j] = color
+          if(check(patternCopy, color)) {
+            return [i, j]
+          }
+        }
+      }
+      return null
+    }                        
+                     
+    // 获得当前方最好的策略和相应预测结果
+    function bestChoice(pattern, color) {
+      let p 
+      if(p = willWin(pattern, color)) {
+        return {
+          point: p,
+          result: 1
+        }
+      }
+      // 模拟一轮对弈，确定预测结果（对对方最差的策略就是对己方最好的策略）
+      let result = -2
+      p = null 
+      outer: for(let i=0; i<size; i++) {
+              for(let j=0; j<size; j++) {
+                if(pattern[size*i+j]) {
+                  continue
+                }
+                let tmp = copy(pattern)
+                tmp[size*i+j] = color
+                let r = bestChoice(tmp, 3-color).result
+                if(-r > result) {
+                  result = -r
+                  p = [i, j]
+                  // 胜负剪枝
+                  if(result == 1) {
+                    break outer
+                  }
+                }
+              }
+            }
+      return {
+        point: p,
+        result: p ? result : 0
+      }
+    }
+  </script>
+</body>
+</html>
