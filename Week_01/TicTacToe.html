@@ -31,6 +31,7 @@
     ]
     let color = 2 // 2:X,1:O,0:""
     let size = 3
+    let winner = ""
     show(pattern)
     // 重绘棋盘
     function show(pattern) {
@@ -61,19 +62,27 @@
 
     // 玩家落子
     function userMove(i, j) {
+      if(winner != "" || pattern[size*i+j]) return 
       pattern[size*i+j] = color
-      if(check(pattern, color)) alert(color == 2 ? "X is winner":"O is winner")
+      if(check(pattern, color)) {
+        winner = color == 2 ? "X":"O"
+        alert(winner+" is winner")
+      }
       color = 3-color
       computerMove()
     }
 
     // 电脑落子
     function computerMove() {
+      if(winner != "") return
       let computerChoice = bestChoice(pattern, color)
       if(computerChoice.point) {
         pattern[computerChoice.point[0]*size + computerChoice.point[1]] = color
       }
-      if(check(pattern, color)) alert(color == 2 ? "X is winner":"O is winner")
+      if(check(pattern, color)) {
+        winner = color == 2 ? "X":"O"
+        alert(winner+" is winner")
+      }
       color = 3-color
       show(pattern)
     }
