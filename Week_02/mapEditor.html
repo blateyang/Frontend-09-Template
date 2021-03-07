@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>地图编辑器</title>
+  <style>
+    .cell {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background-color: grey;
+      border-right: 1px solid white;
+      border-bottom: 1px solid white;
+      /* line-height: 7px;  */
+      vertical-align: top;
+      box-sizing: border-box;
+    }
+
+    #container {
+      width: 701px;
+      font-size: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <button onclick="localStorage['map']=JSON.stringify(map)">save</button>
+  <script>
+    let map = localStorage["map"] ? JSON.parse(localStorage["map"]) : new Array(10000).fill(0)
+    let container = document.getElementById("container")
+    for(let y=0; y<100; y++) {
+      for(let x=0; x<100; x++) {
+        let cell = document.createElement("div")
+        cell.classList.add("cell")
+
+        if(map[100*y + x] == 1) { // 此位置为墙
+          cell.style.backgroundColor = "black"
+        }
+
+        cell.addEventListener("mousemove", ()=>{
+          if(mousedown) {
+            if(clear) {
+              cell.style.backgroundColor = ""
+              map[100*y + x] = 0
+            }else {
+              cell.style.backgroundColor = "black"
+              map[100*y + x] = 1
+            }
+          }
+        })
+
+        container.appendChild(cell)
+      }
+    }
+
+    let mousedown = false
+    let clear = false
+    document.addEventListener("mousedown", (e)=>{
+      mousedown = true
+      clear = (e.which == 3) // e.which为3表示鼠标右键按下，1-左键，2-中间滚轮
+    })
+    document.addEventListener("mouseup", ()=>{mousedown = false})
+    document.addEventListener("contextmenu", e=>e.preventDefault()) // 阻止右键的菜单默认事件
+
+    function sleep(t) {
+      return new Promise((resolve, reject)=> {
+        setTimeout(resolve, t)
+      })
+    }
+    // 广度优先搜索着色算法
+    async function visualizePath(map, start, end) {
+      let queue = [start]
+
+      async function insert(x, y) {
+        if(x<0 || x>=100 || y<0 || y>=100) {
+          return // 跳过边界
+        }
+        if(map[100*y + x]) {
+          return // 跳过墙壁或者已走过的点
+        }
+        await sleep(20) // 暂停一会，给ui渲染一点反应时间
+        container.children[100*y + x].style.backgroundColor = "lightgreen"
+        map[100*y + x] = 2 // 标记为已走过
+        queue.push([x, y])
+      }
+
+      while(queue.length) {
+        let [x, y] = queue.shift()
+        // console.log(x, y)
+        if(x === end[0] && y === end[1]) {
+          return true
+        }
+        await insert(x, y-1)
+        await insert(x+1, y)
+        await insert(x, y+1)
+        await insert(x-1, y)
+      }
+      return false
+    }
+    // 广度优先搜索寻路算法
+    async function findPath(map, start, end) {
+      let queue = [start]
+      let table = Object.create(map)
+
+      async function insert(x, y, preCoords) {
+        if(x<0 || x>=100 || y<0 || y>=100) {
+          return // 跳过边界
+        }
+        if(table[100*y + x]) {
+          return // 跳过墙壁或者已走过的点
+        }
+        // await sleep(10)
+        // container.children[100*y + x].style.backgroundColor = "lightgreen"
+        table[100*y + x] = preCoords // 为当前点记录前一步点坐标
+        queue.push([x, y])
+      }
+
+      while(queue.length) {
+        let [x, y] = queue.shift()
+        // console.log(x, y)
+        if(x === end[0] && y === end[1]) {
+          // return true
+          console.log(x,y)
+          let path = []
+          while(x !== start[0] || y!== start[1]) {
+            path.push(table[100*y + x]) 
+            ;[x, y] = table[100*y + x] // 中括号开头要加分号
+            container.children[100*y + x].style.backgroundColor = "purple"
+          }
+          return path
+        }
+        // 广度搜索[x, y]的八邻域
+        await insert(x, y-1, [x, y])
+        await insert(x+1, y-1, [x, y])
+        await insert(x+1, y, [x, y])
+        await insert(x+1, y+1, [x, y])
+        await insert(x, y+1, [x, y])
+        await insert(x-1, y+1, [x, y])
+        await insert(x-1, y, [x, y])
+        await insert(x-1, y-1, [x, y])
+        
+      }
+      return null
+    }
+
+    /* 
+      启发式搜索思路：将普通广度优先搜索的队列数据结构换成能够根据一定的搜索优先级返回搜索点的数据结构即可。
+      对于寻找搜索路径问题，启发式搜索算法称为A，能找到最佳搜索路径的启发式搜索算法称为A*，只要相关数据结构
+      每次都能返回候选搜索点中距离目标点最近的搜索点，就算是启发式搜索
+    */
+    // 用数组模拟启发式搜索数据结构
+    class Sorted {
+      constructor(data, compare) {
+        this.data = data.slice() // 将原数据拷贝一份
+        this.compare = compare || ((a, b) => a-b)
+      }
+      
+      take() {
+        let len = this.data.length
+        if(len === 0) {
+          return
+        }
+        let min = this.data[0]
+        let minIndex = 0
+        for(let i=1; i<len; i++) {
+          if(this.compare(this.data[i], min) < 0) {
+            min = this.data[i]
+            minIndex = i
+          }
+        }
+        // 将最小元素从数组中取出
+        this.data[minIndex] = this.data[len-1]
+        this.data.pop()
+        return min
+      }
+
+      give(val) {
+        this.data.push(val)
+      }
+
+      includes(val) {
+        for(let i=0; i<this.data.length; i++) {
+          if(val.toString() == this.data[i].toString()) {
+            return true
+          }
+        }
+        return false
+      }
+    }
+
+    // 启发式搜索寻路算法
+    async function findPathHeuristic(map, start, end) {
+      function distanceToTarget(p) {
+          // let dx = p[0]-end[0], dy = p[1]-end[1]
+          // return  dx + dy + (Math.sqrt(2)-2)*Math.min(dx, dy) // 对角距离
+        return (p[0]-end[0])**2 + (p[1]-end[1])**2 // 欧式距离
+//        return Math.pow(p[0]-end[0], 2) + Math.pow(p[1]-end[1], 2)
+      }
+      let queue = new Sorted([start], (a, b)=>distanceToTarget(a)-distanceToTarget(b))
+      let table = Object.create(map)
+
+      async function insert(x, y, preCoords) {
+        if(x<0 || x>=100 || y<0 || y>=100) {
+          return // 跳过边界
+        }
+        if(table[100*y + x]) {
+          // if(table[100*y + x] === 1 || distanceToTarget(table[100*y + x])-distanceToTarget(preCoords) <= 0)
+            return // 跳过墙壁或者已走过的点
+        }
+        if(!queue.includes([x, y])) {
+          await sleep(3)
+          container.children[100*y + x].style.backgroundColor = "lightgreen"
+          table[100*y + x] = preCoords // 为当前点记录前一步点坐标
+          // console.log(preCoords)
+          queue.give([x, y])
+        }
+      }
+
+      while(queue.data.length) {
+        let [x, y] = queue.take()
+        // console.log(x, y)
+        if(x === end[0] && y === end[1]) {
+          // return true
+          console.log(x,y)
+          let path = []
+          while(x !== start[0] || y!== start[1]) {
+            path.push(table[100*y + x]) 
+            ;[x, y] = table[100*y + x] // 中括号开头要加分号
+            container.children[100*y + x].style.backgroundColor = "purple"
+          }
+          console.log(path.length)
+          return path
+        }
+        // 广度搜索[x, y]的八邻域
+        await insert(x, y-1, [x, y])
+        await insert(x+1, y-1, [x, y])
+        await insert(x+1, y, [x, y])
+        await insert(x+1, y+1, [x, y])
+        await insert(x, y+1, [x, y])
+        await insert(x-1, y+1, [x, y])
+        await insert(x-1, y, [x, y])
+        await insert(x-1, y-1, [x, y])
+        
+      }
+      return null
+    }
+
+  </script>
+</body>
+</html>
