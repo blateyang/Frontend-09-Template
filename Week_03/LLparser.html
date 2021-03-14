@@ -7,11 +7,12 @@
 </head>
 <body>
   <script>
+  // -----使用正则匹配进行词法分析-------------
   let regExp = /([0-9\.]+)|([ \t]+)|([\r\n]+)|(\+)|(\-)|(\*)|(\/)/g
   let dict = ["Number", "WhiteSpace", "LineTerminator", "+", "-", "*", "/"]
 
-  // 四则运算表达式分词函数，用生成器便于迭代取值
-  function* tokenize(str) {
+  // 四则运算表达式分词函数（通过正则匹配实现）
+  function* tokenize(str) { // 用生成器便于迭代取值
     let result = null
     let lastIndex = 0
     while(true) {
@@ -41,15 +42,68 @@
   }
 
   let source = []
-  for(let token of tokenize("1024 + 5 * 10 / 2 - 3")) {
+  let expression = "1024 + 5 * 10 / 2 - 3\r" // 需要有一个结束符，否则状态机无法正确解析到最后的数字
+  for(let token of tokenize(expression)) {
   // for(let token of tokenize("5 * 10 / 2")) {
     // console.log(token)
     if(token.type != "WhiteSpace" && token.type != "LineTerminator") {
       source.push(token)
     }
   }
+//  console.log(source)
 
-  console.log(Expression(source))
+  let ast = Expression(source)
+  console.log(expression + " = " + evaluate(ast))
+
+  // -----使用状态机进行词法分析：函数表示状态，if分支表示状态转换-----
+  let nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+  let token = []
+  let source2 = []
+  function start(c) {
+    if(nums.includes(c)) {
+      token.push(c) 
+      return inNumber
+    }
+    if(c == '+' || c == '-' || c == '*' || c == '/') {
+      let node = {
+        "type" : c,
+        "value": c
+      }
+      source2.push(node)
+      return start
+    }
+    if(c == ' ' || c == '\t') {
+      return start
+    }
+    if(c == '\r' || c == '\n') {
+      source2.push({type: "EOF"})
+      return start
+    }
+  }
+
+  function inNumber(c) {
+    if(nums.includes(c)) {
+      token.push(c)
+      return inNumber
+    }
+    // 不再是数字
+    let node = {
+      "type": "Number",
+      "value": token.join("")
+    }
+    source2.push(node)
+    token = []
+    return start(c)
+  }
+
+  let state = start
+  for(let c of expression) {
+    state = state(c)
+  }
+  // console.log(source2)
+
+  ast = Expression(source2)
+  console.log(expression + " = " + evaluate(ast))
 
   function MultiplicativeExpression(source) {
     if(source[0].type == "Number") {
@@ -133,7 +187,7 @@
     MultiplicativeExpression(source)
     return AdditiveExpression(source)
   }
-
+  // 将表达式转换成抽象语法树
   function Expression(source) {
     if(source[0].type == "AdditiveExpression" && source[1] && source[1].type == "EOF") {
       let node = {
@@ -147,6 +201,34 @@
     }
     AdditiveExpression(source)
     return Expression(source)
+  }
+
+  // 执行生成的抽象语法树
+  function evaluate(node) {
+    if(node.type == "Expression") {
+      return evaluate(node.children[0])
+    }
+    if(node.type == "AdditiveExpression") {
+      if(node.operator == "+") {
+        return evaluate(node.children[0]) + evaluate(node.children[2])
+      }
+      if(node.operator == "-") {
+        return evaluate(node.children[0]) - evaluate(node.children[2])
+      }
+      return evaluate(node.children[0])
+    }
+    if(node.type == "MultiplicativeExpression") {
+      if(node.operator == "*") {
+        return evaluate(node.children[0]) * evaluate(node.children[2])
+      }
+      if(node.operator == "/") {
+        return evaluate(node.children[0]) / evaluate(node.children[2])
+      }
+      return evaluate(node.children[0])      
+    }
+    if(node.type == "Number") {
+      return Number(node.value)
+    }
   }
   </script>
 </body>
