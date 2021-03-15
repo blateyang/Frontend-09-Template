@@ -8,8 +8,9 @@
 <body>
   <script>
   // -----使用正则匹配进行词法分析-------------
-  let regExp = /([0-9\.]+)|([ \t]+)|([\r\n]+)|(\+)|(\-)|(\*)|(\/)/g
-  let dict = ["Number", "WhiteSpace", "LineTerminator", "+", "-", "*", "/"]
+  // 仅针对运算数为正整数情况，小数情况的正则可以参考https://www.cnblogs.com/fanshuyao/p/12705663.html
+  let regExp = /([ \t]+)|([\r\n]+)|(\+)|(\-)|(\*)|(\/)|(0|([1-9]\d*))/g 
+  let dict = ["WhiteSpace", "LineTerminator", "+", "-", "*", "/", "Number"]
 
   // 四则运算表达式分词函数（通过正则匹配实现）
   function* tokenize(str) { // 用生成器便于迭代取值
