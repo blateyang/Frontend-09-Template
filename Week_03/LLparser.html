@@ -8,9 +8,9 @@
 <body>
   <script>
   // -----使用正则匹配进行词法分析-------------
-  // 仅针对运算数为正整数情况，小数情况的正则可以参考https://www.cnblogs.com/fanshuyao/p/12705663.html
-  let regExp = /([ \t]+)|([\r\n]+)|(\+)|(\-)|(\*)|(\/)|(0|([1-9]\d*))/g 
-  let dict = ["WhiteSpace", "LineTerminator", "+", "-", "*", "/", "Number"]
+  // 仅针对运算数为正数情况
+  let regExp = /(\d+\.?\d*)|([ \t]+)|([\r\n]+)|(\+)|(\-)|(\*)|(\/)/g 
+  let dict = ["Number","WhiteSpace", "LineTerminator", "+", "-", "*", "/"]
 
   // 四则运算表达式分词函数（通过正则匹配实现）
   function* tokenize(str) { // 用生成器便于迭代取值
@@ -43,7 +43,7 @@
   }
 
   let source = []
-  let expression = "1024 + 5 * 10 / 2 - 3\r" // 需要有一个结束符，否则状态机无法正确解析到最后的数字
+  let expression = "1024 + 5.2 * 10 / 2 - 3\r" // 需要有一个结束符，否则状态机无法正确解析到最后的数字
   for(let token of tokenize(expression)) {
   // for(let token of tokenize("5 * 10 / 2")) {
     // console.log(token)
@@ -57,7 +57,7 @@
   console.log(expression + " = " + evaluate(ast))
 
   // -----使用状态机进行词法分析：函数表示状态，if分支表示状态转换-----
-  let nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+  let nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9','.']
   let token = []
   let source2 = []
   function start(c) {
