@@ -124,11 +124,14 @@
           // return true
           console.log(x,y)
           let path = []
+          let dist2 = 0
           while(x !== start[0] || y!== start[1]) {
+            dist2 += ((x-table[100*y+x][0])**2 + (y-table[100*y+x][1])**2)
             path.push(table[100*y + x]) 
             ;[x, y] = table[100*y + x] // 中括号开头要加分号
             container.children[100*y + x].style.backgroundColor = "purple"
           }
+          console.log(dist2)
           return path
         }
         // 广度搜索[x, y]的八邻域
@@ -195,8 +198,8 @@
       function distanceToTarget(p) {
           // let dx = p[0]-end[0], dy = p[1]-end[1]
           // return  dx + dy + (Math.sqrt(2)-2)*Math.min(dx, dy) // 对角距离
-        return (p[0]-end[0])**2 + (p[1]-end[1])**2 // 欧式距离
-//        return Math.pow(p[0]-end[0], 2) + Math.pow(p[1]-end[1], 2)
+//          return (p[0]-end[0])**2 + (p[1]-end[1])**2 // 欧式距离
+          return Math.abs(p[0]-end[0]) + Math.abs(p[1]-end[1]) // 曼哈顿距离
       }
       let queue = new Sorted([start], (a, b)=>distanceToTarget(a)-distanceToTarget(b))
       let table = Object.create(map)
@@ -225,12 +228,14 @@
           // return true
           console.log(x,y)
           let path = []
+          let dist = 0
           while(x !== start[0] || y!== start[1]) {
+            dist += ((x-table[100*y+x][0])**2 + (y-table[100*y+x][1])**2)
             path.push(table[100*y + x]) 
             ;[x, y] = table[100*y + x] // 中括号开头要加分号
             container.children[100*y + x].style.backgroundColor = "purple"
           }
-          console.log(path.length)
+          console.log(dist) // 对于C字型障碍[0, 0]->[20,20]的欧式距离、街区距离和对角距离的值分别为44,44,58
           return path
         }
         // 广度搜索[x, y]的八邻域
