@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    let $ = Symbol("$") // 尾结束符属性，使用Symbol避免和字符串中可能含有的$冲突
+    class Trie {
+      constructor() {
+        this.root = Object.create(null) // Trie树的根节点，基于null创建对象可以避免对Object污染
+      }
+
+      // 往字典树中插入字符串，时间复杂度正比于插入字符串长度
+      insert(str) {
+        let node = this.root
+        for(let c of str) {
+          if(!node[c]) {
+            node[c] = Object.create(null)
+          }
+          node = node[c] // 不断深入Trie树结点                                                                                                                                                                                         )
+        }
+        // node[$]用来统计字符串出现的次数
+        if(!node[$]) { 
+          node[$] = 0
+        }
+        node[$]++
+      }
+
+      // 查找出现次数最多的字符串，时间复杂度正比于节点数
+      most() {
+        let maxWord = null
+        let max = 0
+        let visit = (node, word) => {
+          if(node[$] && node[$]>max) {
+            max = node[$]
+            maxWord = word
+          }
+          for(let c in node) {
+            visit(node[c], word+c)
+          }
+        }
+        visit(this.root, "")
+        return maxWord+":"+max
+      }
+
+      //查找是否存在某字符串，时间复杂度正比于待查找字符串长度
+      find(str) { 
+        let node = this.root
+        for(let c of str) {
+          if(!node[c]) {
+              return false
+          }
+          node = node[c]
+        }
+        return true
+      }
+    }
+
+    function randomCharacter(len) {
+      let str = ""
+      for(let i=0; i<len; i++) {
+        str += String.fromCharCode(Math.random()*26+"a".charCodeAt(0)) // 生成随机小写字母
+      }
+      return str
+    }
+
+    let trie = new Trie()
+    for(let i=0; i<200000; i++) {
+      trie.insert(randomCharacter(4))
+    }
+    console.log(trie)
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
