@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    #colorPanel {
+      width: 200px;
+      height: 200px;
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <input id="r" type="range" min=0 max=255>
+  <input id="g" type="range" min=0 max=255>
+  <input id="b" type="range" min=0 max=255>
+  <div id="colorPanel"></div>
+  <script>
+    let useReactives = []
+    let callbacks = new Map()
+    let reactives = new Map()
+    let obj={
+      r: 0,
+      g: 0,
+      b: 0
+    }
+
+    function effect(callback) {
+      useReactives = []
+      callback()
+      for(let reactive of useReactives) {
+        if(!callbacks.has(reactive[0])) 
+        callbacks.set(reactive[0], new Map())
+        if(!callbacks.get(reactive[0]).has(reactive[1])) 
+          callbacks.get(reactive[0]).set(reactive[1], [])
+        // 将回调函数添加到相关对象属性的回调列表中
+        callbacks.get(reactive[0]).get(reactive[1]).push(callback)
+      }
+    }
+
+    function reactive(obj) {
+      if(reactives.has(obj)) //返回已缓存的代理对象
+        return reactives.get(obj)
+      let proxy = new Proxy(obj, {
+        set(obj, prop, val) {
+          obj[prop] = val
+          if(callbacks.has(obj) && callbacks.get(obj).has(prop)) {
+            for(let callback of callbacks.get(obj).get(prop)) {
+              callback() // 执行对象属性的回调列表，注意如何避免重复执行相同的回调
+            }
+          }
+          return obj[prop]
+        },
+        get(obj, prop) {
+          useReactives.push([obj, prop]) // 搜集对象属性,注意如何避免重复搜集
+          if(typeof obj[prop] == "object")
+            return reactive(obj[prop])
+          return obj[prop]
+        }
+      })
+      reactives.set(obj, proxy)
+      return proxy
+    }
+
+    let po = reactive(obj)
+
+    effect(() => {
+      document.getElementById("r").value = po.r
+    })
+    effect(() => {
+      document.getElementById("g").value = po.g
+    })
+    effect(() => {
+      document.getElementById("b").value = po.b
+    })
+    effect(() => {
+      document.getElementById("colorPanel").style.backgroundColor = `rgb(${po.r}, ${po.g}, ${po.b})`
+    })
+
+    
+    document.getElementById("r").addEventListener("input", event => po.r = event.target.value)
+    document.getElementById("g").addEventListener("input", event => po.g = event.target.value)
+    document.getElementById("b").addEventListener("input", event => po.b = event.target.value)
+
+  </script>
+</body>
+</html>

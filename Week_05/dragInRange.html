@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container">
+    文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字
+    文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字
+    文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字
+    文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字
+    文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字
+    文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字
+    文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字
+    文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字
+    文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字
+    文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字
+    文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字
+    文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字
+    文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字 文字
+  </div>
+  <div id="dragable" style="display:inline-block; width:100px; height:100px; background-color: pink"></div>
+</body>
+<script>
+  let dragable = document.getElementById("dragable")
+  let baseX = 0, baseY = 0
+  dragable.addEventListener("mousedown", (event)=>{
+    // 在目标的mousedown事件后监听mousemove和mouseup事件
+    let startX = event.clientX, startY = event.clientY // 获取鼠标点下时的位置
+    let up = (event) => {
+      // 更新目标的基位置
+      baseX = baseX + event.clientX - startX 
+      baseY = baseY + event.clientY - startY
+      document.removeEventListener("mousemove", move)
+      document.removeEventListener("mouseup", up)      
+    }
+    let move = (event) => {
+      let nearestRange = getNearst(event.clientX, event.clientY)
+      nearestRange.insertNode(dragable)
+      // dragable.style.transform = `translate(${baseX + event.clientX-startX}px, ${baseY + event.clientY-startY}px)`
+    }
+    document.addEventListener("mousemove", move)
+    document.addEventListener("mouseup", up)
+  })
+
+    // 获取文本内容每个字符的边界range
+    let ranges = []
+    let container = document.getElementById("container")
+    for(let i=0; i<container.childNodes[0].textContent.length; i++) {
+      let range = document.createRange()
+      range.setStart(container.childNodes[0], i)
+      range.setEnd(container.childNodes[0], i)
+//      console.log(range.getBoundingClientRect())
+      ranges.push(range)
+    }
+    // 找到距离某位置最近的range
+    function getNearst(x, y) {
+      let min = Infinity
+      let nearestRange = null
+      for(let range of ranges) {
+        let rangeX = range.getBoundingClientRect().x
+        let rangeY = range.getBoundingClientRect().y
+        let dist = (x-rangeX)**2 + (y-rangeY)**2
+        if(dist < min){
+          min = dist
+          nearestRange = range
+        } 
+      }
+      return nearestRange
+    }
+
+    document.addEventListener("selectstart", event=>event.preventDefault()) // 阻止文本选择开始事件默认行为
+</script>
+</html>
