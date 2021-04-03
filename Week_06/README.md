@@ -251,12 +251,3 @@ ps: [[]]双括号括起来的属性是无法在JS中无法访问到但在运行�
 参考[重学前端-JavaScript对象：你知道全部的对象分类吗](https://time.geekbang.org/column/article/80011)中具有特殊行为的对象
 个人认为具有[[]]特殊行为的对象都属于，如
 - Function对象（[[call]]）
-- Error对象（[[ErrorData]]）
-- Boolean对象（[[BooleanData]]）
-- Number对象（[[NumberData]]）
-- String对象（[[StringData]]）
-- Symbol对象（[[SymbolData]]）
-- Date对象（[[DateValue]]）
-- RegExp对象（[[RegExpMatcher]]）
-- Map对象（[[MapData]]）
-- Set对象（[[SetData]]）
