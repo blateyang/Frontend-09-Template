@@ -33,8 +33,11 @@ po = reactie(obj)
 doucment.getElementById("xxx").value = po.prop
 ```
 双向绑定实现可交互调色板的例子表明通过双向绑定可以较容易地实现低代码的可交互式应用
+
 2. 再对视图input元素添加事件监听
-`document.getElementById("xxx").addEventListener("input", event => po.prop = event.target.value)`
+```js
+document.getElementById("xxx").addEventListener("input", event => po.prop = event.target.value)
+```
 ## 3 使用Range API实现DOM精确操作
 ### 3.1 Range API简介及用法
 Range API可用于实现DOM精细操作，包括局部范围的节点和文本
