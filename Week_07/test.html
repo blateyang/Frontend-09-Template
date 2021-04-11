@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="./foo.js"></script>
+  <title>Document</title>
+  <script type="module">
+    import {foo} from "./foo.js"
+    var i=0;
+    function test() {
+      console.log(i);
+      foo();
+      console.log(i);
+      i++;
+    }
+    test();
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
