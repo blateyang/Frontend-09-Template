@@ -33,7 +33,7 @@ function reactive(obj) {
       return obj[prop]
     },
     get(obj, prop) {
-      useReactives.push([obj, prop]) // 搜集对象属性,注意如何避免重复搜集
+      useReactives.push([obj, prop]) // 搜集对象属性,注意如何避免重复收集
       if(typeof obj[prop] == "object")
         return reactive(obj[prop])
       return obj[prop]

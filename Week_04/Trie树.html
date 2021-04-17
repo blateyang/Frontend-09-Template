@@ -36,7 +36,7 @@
             max = node[$]
             maxWord = word
           }
-          for(let c in node) {
+          for(let c in node) { // 当node是node[$]时会跳过执行自动返回
             visit(node[c], word+c)
           }
         }

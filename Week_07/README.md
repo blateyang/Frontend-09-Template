@@ -292,5 +292,17 @@ foo3的闭包
 - 环境部分：z:3, 箭头函数引入的this:global => foo2的环境部分 y:2
 - 代码部分： console.log(z, y) （沿着作用域链可访问到y）
 
-### 3.3 作业：找出Realm中可以使用的js内置对象
+### 3.3 作业：找出受Realm控制的js内置对象
 参考built-in-visualization.html
+
+文件中的内置对象是所有的js内置对象，受realm控制的内置对象参考下列代码
+```js
+// 找到一个具有iframe的网页
+const iframeInternalContent = document.getElementsByTagName("iframe")[0].contentWindow
+let iframeInternalObjects = Object.getOwnPropertyDescriptors(iframeInternalContent)
+for(let propName in iframeInternalObjects){
+  if(iframeInternalObjects[propName] !== window[propName]) {
+    // objects in Realm
+  }
+}
+```

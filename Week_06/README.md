@@ -118,6 +118,7 @@ https://www.zhihu.com/question/20115374/answer/288346717
   - Package
   - Library
 ## 2 JS的类型
+JS类型属于Atom级的知识
 ### 2.1 Number
 #### 2.1.1 表示方法——IEEE754双精度浮点数
 采用的是IEEE754双精度64位浮点数标准，由1位符号位，11位指数偏移位（决定了数的表示范围）和52位精度位(fraction或叫尾数位，决定了数的表示精度)组成，能准确表示的数的范围是-(2^53-1)~(2^53-1)，但要注意四点：
@@ -242,7 +243,7 @@ ps: [[]]双括号括起来的属性是无法在JS中无法访问到但在运行�
   - 基本面向对象能力：{}/./[]/Object.defineProperty
   - 基于原型的描述对象的API：Object.create/Object.setPrototypeOf/Object.getPrototypeOf
   - 基于分类方式描述对象的API： new/class/extends
-  - 上一种的低层实现：new/function/prototype
+  - 上一种的底层实现：new/function/prototype
 4. JS的一种特殊对象——Function函数对象
 
 函数对象可通过function关键字、箭头函数、Function构造器创建，除了具有一般对象的属性和行为，还具有一个特殊的行为[[call]],当用类似f()的语法把对象当作函数调用时会访问到[[call]]行为。

@@ -22,7 +22,7 @@ console.log(objProxy.name)
   - Proxy不仅可以拦截get和set，还能拦截改变很多内置或原生的操作，例如handler.apply,handler.defineProperty
 ## 2 Vue3 reactive 响应式API
 ### 2.1 原理
-将操作对象属性的函数用effect函数注册（执行函数并将函数添加到相关对象属性的回调列表中），利用Proxy在读取对象属性时收集对象属性，在设置对象属性时执行用到了该对象属性的回调函数
+将操作对象属性的函数用effect函数注册，注册时会执行该函数并通过Proxy的get API获取到函数所操作的对象属性，然后将该函数添加到相关对象属性的回调列表中，通过Proxy的set API在设置对象属性时执行用到了该对象属性的回调函数。简而言之，就是利用Proxy的get和set API在读取对象属性时收集用到该对象属性的函数（订阅者），在设置对象属性时再执行相关联的函数（通知订阅者）
 ### 2.2 解决级联访问属性时的监听问题
 1. 遇到引用型属性用reactive()再进行一次代理
 2. 每次用reactive代理都会返回一个新的proxy对象，为避免在级联访问属性时重复生成proxy对象，可设置一个Map全局缓存
@@ -32,12 +32,12 @@ console.log(objProxy.name)
 po = reactie(obj)
 doucment.getElementById("xxx").value = po.prop
 ```
-双向绑定实现可交互调色板的例子表明通过双向绑定可以较容易地实现低代码的可交互式应用
 
 2. 再对视图input元素添加事件监听
 ```js
 document.getElementById("xxx").addEventListener("input", event => po.prop = event.target.value)
 ```
+双向绑定实现可交互调色板的例子表明通过双向绑定可以较容易地实现低代码的可交互式应用
 ## 3 使用Range API实现DOM精确操作
 ### 3.1 Range API简介及用法
 Range API可用于实现DOM精细操作，包括局部范围的节点和文本
