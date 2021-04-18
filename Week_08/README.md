@@ -41,18 +41,18 @@ while(true) {
 3. body是KV对
 4. 不同的Content-Type影响body格式，常见的有application/x-www-form-urlencoded,application/json
 
-### 3.2 Step2：编写异步的send函数
+#### 3.2 Step2：编写异步的send函数
 1. 将send函数设计成返回一个Promise
 2. 通过node的net module的connection API将请求发送出去
 3. 监听connection的data事件，收到数据传给parser，解析收到的响应，resovle Promise并关闭连接
 4. 监听connection的error事件，reject Promise并关闭连接
 
-### 3.3 Step3：ResponseParser总结
+#### 3.3 Step3：ResponseParser总结
 1. Response必须分段构造，所以要有一个ResponseParser来解析“装配”
 2. ResponseParser分段处理responseText，需要用状态机来分析文本结构，在编写状态机代码前最好画出状态转移图帮助分析
 3. 状态机的状态可用常量定义，也可用函数定义，使用函数实现状态机时注意this的指向
 4. 解析完response后将得到的statusCode,statusText,headers,body装配成对象保存
 
-### 3.4 Step4：BodyParser总结
+#### 3.4 Step4：BodyParser总结
 1. Response的body可能根据Contetn-Type有不同的结构，采用子Parser的结构解决
 2. 典型的对于node服务器返回的chunked数据创建ChunkedBodyParser，同样使用状态机来分析处理
