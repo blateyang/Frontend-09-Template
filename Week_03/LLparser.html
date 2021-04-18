@@ -204,7 +204,7 @@
     return Expression(source)
   }
 
-  // 执行生成的抽象语法树
+  // 执行生成的抽象语法树(先序遍历)
   function evaluate(node) {
     if(node.type == "Expression") {
       return evaluate(node.children[0])
