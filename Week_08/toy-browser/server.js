@@ -22,7 +22,7 @@ http.createServer((request, response)=>{
           <script src="./foo.js"></script>
           <title>Document</title>
           <style>
-            p {
+            p.text#name {
               font-size: 20px,
               color: red,
               background-color: blue
@@ -31,11 +31,23 @@ http.createServer((request, response)=>{
               width: 30px,
               background-color: #ffffff
             }
+            body div #myImg {
+              height: 30px
+            }
+            .classImg {
+              margin: 10px
+            }
+            .myClass {
+              border: 2px
+            }
           </style>
         </head>
         <body>
-          <div><p>Hello world</p></div>
-          <img src="" />
+          <div>
+            <p class="text">Hello world</p>
+            <img id="myImg" src="xx" class="classImg  myClass"/>
+            <p class="text" id="name">My name is blateyang</p>
+          </div>
         </body>
       </html>`
     )

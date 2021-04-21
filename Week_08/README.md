@@ -317,3 +317,4 @@ HTTP 是文本型协议（与二进制协议相对），所有内容都是字符
 ### 3.4 Step4：BodyParser总结
 1. Response的body可能根据Contetn-Type有不同的结构，采用子Parser的结构解决
 2. 典型的对于node服务器返回的chunked数据创建ChunkedBodyParser，同样使用状态机来分析处理
+

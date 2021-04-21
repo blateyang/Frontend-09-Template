@@ -10,9 +10,79 @@ function addCSSRules(text) {
   rules.push(...ast.stylesheet.rules)
 }
 
+// selector:复合选择器 #myImg 或 p.text#name
+function match(element, selector) {
+  if(!selector || !element.attributes) {// 无attributes的文本节点不处理
+    return false
+  }
+  let regMatches = selector.match(/([a-zA-Z]+)|(.[a-zA-Z]+)|(#[a-zA-Z]+)/g)
+  for(let subSelector of regMatches) {
+    let attr = ''
+    if(subSelector.charAt(0) == "#") {// id选择器
+      attr = element.attributes.filter(attr => attr.name === "id")[0]
+      if(!attr || attr.value !== subSelector.substring(1)) {
+        return false
+      }
+    }else if(subSelector.charAt(0) == ".") {// class选择器
+      attr = element.attributes.filter(attr => attr.name === "class")[0]
+      if(!attr || !attr.value.split(/[\t ]+/).includes(subSelector.substring(1))) {
+        return false
+      }
+    }else if(subSelector !== element.tagName) {// 元素选择器
+      return false
+    }
+  }
+  return true
+  // let attr = ''
+  // if(selector.charAt(0) == "#") {// id选择器
+  //   attr = element.attributes.filter(attr => attr.name === "id")[0]
+  //   if(attr && attr.value === selector.substring(1)) {
+  //     return true
+  //   }
+  // }
+  // if(selector.charAt(0) == ".") {// class选择器
+  //   attr = element.attributes.filter(attr => attr.name === "class")[0]
+  //   if(attr && attr.value.split(/[\t ]+/).includes(selector.substring(1))) {
+  //     return true
+  //   }
+  // }
+  // if(selector == element.tagName) {// 元素选择器
+  //   return true
+  // }
+  // return false
+}
+
 function computeCSS(element) {
-  var elements = stack.slice().reverse()
+  // 深拷贝一份当前栈（包含当前元素的所有父元素）并由内向外排列
+  var elements = stack.slice().reverse() 
   console.log("compute css for element", element)
+
+  if(!element.computedCss) {
+    element.computedCss = {}
+  }
+
+  let matched = false
+  for(let rule of rules){
+    //CSS规则也由内向外，简单起见不考虑选择器列表和复杂选择器
+    let selectorPaths = rule.selectors[0].split(" ").reverse() 
+    if(!match(element, selectorPaths[0])) {
+      continue
+    }
+    // 由内向外循环遍历父元素队列，判断当前元素是否能匹配当前规则
+    let j=1
+    for(let i=0; i<elements.length; ++i) {
+      if(match(elements[i], selectorPaths[j])) {
+        ++j
+      }
+    }
+    if(j >= selectorPaths.length) {
+      matched = true
+    }
+
+    if(matched) {
+      console.log("Element", element, "matched rule", rule)
+    }
+  }
 }
 function emit(token) {
   // console.log(token)
@@ -28,7 +98,7 @@ function emit(token) {
     }
     for(let key in token) {
       if(key !== "type" && key !== "tagName" && key !== "isSelfClosing") {
-        element.attributes.push({key: token[key]})
+        element.attributes.push({name: key, value: token[key]}) // 原写法{key, token[key]}错误
       }
     }
     computeCSS(element) // 在遇到startTag时就开始计算CSS
