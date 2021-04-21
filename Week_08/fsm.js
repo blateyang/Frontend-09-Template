@@ -51,4 +51,4 @@ function fsm(input) {
   }
 }
 
-console.log(fsm("abacbabx"))
+console.log(fsm("abababx"))

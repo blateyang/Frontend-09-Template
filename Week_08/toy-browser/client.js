@@ -1,4 +1,5 @@
 const net = require("net")
+const parser = require("./parser")
 
 class Request {
   // 复制配置对象并添加必要的头
@@ -243,6 +244,7 @@ void async function() {
   })
   
   let response = await request.send()
-  
-  console.log(response)
+  let dom = parser.parseHTML(response.body)
+  console.log(dom)
+  // console.log(response)
 }() // 立即调用函数

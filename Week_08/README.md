@@ -3,6 +3,7 @@
 熟悉浏览器工作原理的意义：对前端性能优化和CSS的某些布局和渲染特性的理解有帮助
 
 浏览器的主要作用就是将请求的网址转换为网页图片，按照顺序大致可分为以下几个阶段：
+![渲染流程](https://img-blog.csdnimg.cn/20210414193221829.png#pic_center)
 URL --http--> HTML --parse--> DOM --css computing-->DOM with CSS--layout-->DOM with position--render-->Bitmap
 
 ## 2 基础知识：有限状态机（FSM)
@@ -30,11 +31,271 @@ while(true) {
   state = state(input) //把状态机的返回值作为下一个状态
 }
 ```
+### 2.3 有限状态机的优势如何体现？
 
-### 2.3 作业:用FSM完成字符串abababx的查找
+**Example 1:** 在一个字符串中找到字符 'a'。
+
+常规思路：
+
+```js
+function match(string) {
+    for(let c of string) {
+        if(c === 'a') return true;
+    }
+    return false;
+}
+
+match("I am a groot")
+```
+
+**Example 2:** 在一个字符串中找到字符 'ab'（不能使用正则表达式）
+
+```js
+function match(string) {
+    let foundA = false;
+    for(let c of string) {
+        if(c === 'a')
+            foundA = true;
+        else if(foundA && c === 'b')
+            return true;
+        else
+            foundA = false;
+    }
+    return false;
+}
+
+console.log(match("I acbm groot"));
+```
+
+**Example 3:** 在一个字符串中找到字符 'abcdef'（不能使用正则表达式）
+
+```js
+function match(string) {
+    let foundA = false;
+    let foundB = false;
+    let foundC = false;
+    let foundD = false;
+    let foundE = false;
+    for(let c of string) {
+        if(c === 'a') 
+            foundA = true;
+        else if(foundA && c === 'b') {
+            if(!foundB) foundB = true;
+            else {
+                foundA = false;
+                foundB = false;
+            }
+        }
+        else if(foundB && c === 'c') {
+            if(!foundC) foundC = true;
+            else {
+                foundA = false;
+                foundB = false;
+                foundC = false;
+            }
+        }
+        else if(foundC && c === 'd') {
+            if(!foundD) foundD = true;
+            else {
+                foundA = false;
+                foundB = false;
+                foundC = false;
+                foundD = false;
+            }
+        }
+        else if(foundD && c === 'e') {
+            if(!foundE) foundE = true;
+            else {
+                foundA = false;
+                foundB = false;
+                foundC = false;
+                foundD = false;
+                foundE = false;
+            }
+        }
+        else if(foundE && c === 'f')
+            return true;
+        else {
+            foundA = false;
+            foundB = false;
+            foundC = false;
+            foundD = false;
+            foundE = false;
+        }
+    }
+  return false;
+}
+
+console.log('abbcdef');
+```
+
+可以看到，用常规解法到这里代码已经不太容易阅读。
+
+如何使用状态机解 Example 3？其实每找到一个字符，就可以认为状态发生了一次改变，下次处理的逻辑是独立的。可以将代码修改为如下形式：
+
+```js
+function match(string) {
+    let state = start;
+    for(let c of string) {
+        state = state(c);
+    }
+    return state === end;
+}
+
+function start(c) {
+    if(c === 'a')
+        return foundA;
+    else
+        return start;
+}
+
+// trap
+function end(c) {
+    return end;
+}
+
+function foundA(c) {
+    if(c === 'b')
+        return foundB;
+    else
+        // reconsume，重新从此位开始判断
+        return start(c);
+}
+
+function foundB(c) {
+    if(c === 'c')
+        return foundC;
+    else
+        return start(c);
+}
+
+function foundC(c) {
+    if(c === 'd')
+        return foundD;
+    else
+        return start(c);
+}
+
+function foundD(c) {
+    if(c === 'e')
+        return foundE;
+    else
+        return start(c);
+}
+
+function foundE(c) {
+    if(c === 'f')
+        return end;
+    else
+        return start(c);
+}
+
+console.log(match('aabcdef'));
+```
+
+**Example 4：**在一个字符串中找到字符 'abcabx'
+
+```js
+function match(string) {
+    let state = start;
+    for(let c of string) {
+        state = state(c);
+    }
+    return state === end;
+}
+
+function start(c) {
+    if(c === 'a')
+        return foundA;
+    else
+        return start;
+}
+
+// trap
+function end(c) {
+    return end;
+}
+
+function foundA(c) {
+    if(c === 'b')
+        return foundB;
+    else
+        return start(c);
+}
+
+function foundB(c) {
+    if(c === 'c')
+        return foundC;
+    else
+        return start(c);
+}
+
+function foundC(c) {
+    if(c === 'a')
+        return foundABCA;
+    else
+        return start(c);
+}
+
+function foundABCA(c) {
+    if(c === 'b') 
+        return foundABCAB;
+    else
+        return start(c);
+}
+
+function foundABCAB(c) {
+    if(c === 'x') 
+        return end;
+    else
+        return foundB(c); // reconsume
+}
+
+
+console.log(match('abcabcabx'));
+```
+
+### 2.4 作业:用FSM完成字符串abababx的查找
 参见fsm.js
 
+
 ## 3 浏览器工作原理——解析响应
+### 3.0 HTTP基础知识
+#### 3.0.1 网络分层模型
+
+![网络模型](https://img-blog.csdnimg.cn/20210415205039640.png#pic_center)
+
+#### 3.0.2 TCP 与 IP
+
+- 流（无明显分割单位，只考虑前后顺序）
+- 端口（应用对应端口）
+- node使用网络库：require('net')
+- libnet/libpcap，node 调用的两个底层库（c++），libnet 负责构造 IP 包并发送，labpcap 负责从网卡抓所有的 IP 包
+
+#### 3.0.3 HTTP Request
+
+HTTP 是文本型协议（与二进制协议相对），所有内容都是字符，比如 1，会被用 Unicode 编码值传递。也就是传输 HTTP 时 TCP 里的内容都是字符。
+
+一个 HTTP 请求包括如下内容：
+
+- request line，如`GET url HTTP/1.1`
+- headers，如Content-Type
+
+- body，与headers用一个空行隔开，由 Content-Type 决定格式，常见的有application/x-www-form-urlencoded,application/json
+
+#### 3.0.4 HTTP Response
+
+- status line，如 `HTTP/1.1 200 OK`
+- headers，同 request
+
+- body，与headers用一个空行隔开，格式由 Content-Type 决定。node 默认为 trunked body。如
+
+```html
+26 // 16 进制字符，每一行前都有，表示 trunk 长度，用于切分 body 内容
+<html><body>Hello World<body></html>
+0 // 16 进制 0，表示结束
+```
+
 ### 3.1 Step1：HTTP请求
 1. 从使用的角度设计一个HTTP请求的类，需要有一个配置对象和一个异步send函数
 2. Content-Type是必需字段，要有默认值
