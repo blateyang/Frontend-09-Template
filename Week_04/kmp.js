@@ -6,7 +6,7 @@
  */
 function kmp(source, pattern) {
 //  if(pattern == "") return 0
-  let table = new Array(pattern.length).fill(0)
+  let table = new Array(pattern.length+1).fill(0) // +1避免数组越界，如模式串为aa
   // 计算模式串的自重复子串长度表格，指针i一直向前，时间复杂度O(m)
   {
     let i=1, j=0

@@ -23,22 +23,23 @@ http.createServer((request, response)=>{
           <title>Document</title>
           <style>
             p.text#name {
-              font-size: 20px,
-              color: red,
-              background-color: blue
+              font-size: 20px;
+              color: red;
+              background-color: blue;
             }
             body div img {
-              width: 30px,
-              background-color: #ffffff
+              width: 30px;
+              background-color: #ffffff;
             }
             body div #myImg {
-              height: 30px
+              height: 30px;
+              margin: 20px;
             }
             .classImg {
-              margin: 10px
+              margin: 10px;
             }
             .myClass {
-              border: 2px
+              border: 2px;
             }
           </style>
         </head>

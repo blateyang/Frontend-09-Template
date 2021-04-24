@@ -52,14 +52,43 @@ function match(element, selector) {
   // return false
 }
 
+/*
+计算css规则的specificity
+*/
+function computeSpecificity(selector) {
+  let spec = [0, 0, 0, 0]
+  let compSelectors = selector.split(" ") 
+  for(let compSelector of compSelectors) {//compSelector:复合选择器 #myImg 或 p.text#name
+    let regMatches = compSelector.match(/([a-zA-Z]+)|(.[a-zA-Z]+)|(#[a-zA-Z]+)/g)
+    for(let subSelector of regMatches) {
+      if(subSelector.charAt(0) == "#") {
+        spec[1]++
+      }else if(subSelector.charAt(0) == ".") {
+        spec[2]++
+      }else if(subSelector.match(/^[a-zA-Z]+/)) {
+        spec[3]++
+      }
+    }
+  }
+  return spec
+}
+
+
+function compareSpecificity(spec1, spec2) {
+  if(spec1[0] != spec2[0]) {
+    return spec1[0] - spec2[0]
+  }else if(spec1[1] != spec2[1]) {
+    return spec1[1] - spec2[1]
+  }else if(spec1[2] != spec2[2]) {
+    return spec1[2] - spec2[2]
+  }
+  return spec1[3]-spec2[3]
+}
+
 function computeCSS(element) {
   // 深拷贝一份当前栈（包含当前元素的所有父元素）并由内向外排列
   var elements = stack.slice().reverse() 
   console.log("compute css for element", element)
-
-  if(!element.computedCss) {
-    element.computedCss = {}
-  }
 
   let matched = false
   for(let rule of rules){
@@ -81,6 +110,34 @@ function computeCSS(element) {
 
     if(matched) {
       console.log("Element", element, "matched rule", rule)
+      if(!element.computedStyle) {
+        element.computedStyle = {}
+      }
+      let sp = computeSpecificity(rule.selectors[0])
+      // if(!element.computedStyle.specificity) {
+      //   element.computedStyle.specificity = sp
+      //   for(let declaration of rule.declarations) {
+      //     if(!element.computedStyle[declaration.property]) {
+      //       element.computedStyle[declaration.property] = {}
+      //     }
+      //     element.computedStyle[declaration.property].value = declaration.value
+      //   }
+      // }else{
+        for(let declaration of rule.declarations) {
+          if(!element.computedStyle[declaration.property]) {
+            element.computedStyle[declaration.property] = {}
+          }
+          if(!element.computedStyle[declaration.property].specificity) {
+            element.computedStyle[declaration.property].value = declaration.value
+            element.computedStyle[declaration.property].specificity = sp
+          }
+          if(compareSpecificity(element.computedStyle[declaration.property].specificity, sp) < 0){
+            element.computedStyle[declaration.property].value = declaration.value
+            element.computedStyle[declaration.property].specificity = sp
+          }
+        }
+
+      // }
     }
   }
 }

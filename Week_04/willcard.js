@@ -29,6 +29,7 @@ function find(source, pattern) {
   for(let i=0; i<starCount-1; i++) {
     let subPattern = pattern.split("*")[i+1]
     let reg = new RegExp((subPattern.replace("?", "[\\s\\S]")), "g") // 全局匹配（会一直匹配到最后一个结果）
+    reg.lastIndex = lastIndex
     if(!reg.exec(source)) // 返回null表示未匹配上
       return false
     lastIndex = reg.lastIndex
