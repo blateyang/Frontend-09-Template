@@ -15,8 +15,7 @@
   - Main: height, y, top, bottom
   - Cross: width, x, left, right
 使用主轴和交叉轴的概念对排版方向进行抽象，以便能够适应多种书写方式。
-#### 1.1.3 
-排版的准备工作：
+#### 1.1.3 排版的准备工作
 1. 设定flex相关属性(flexDirection, justifyContent, alignContent, alignItems, flexWrap)的默认值
 2. 根据flexDirection和flexWrap的值设定抽象的mainSize,mainStart,mainEnd,mainSign,mainBase等变量，方便后续代码的编写
 
@@ -46,3 +45,26 @@
 1. 递归调用子元素的绘制方法即可完成整个dom树的绘制
 2. 实际浏览器中，文字绘制是难点，需要依赖字体库，课程中忽略
 3. 实际浏览器中，还会对一些图层做compositing，课程中也予以忽略
+
+## 3 第三次答疑问题
+1. 解析HTML时afterQuotedAttributeValue状态函数的最后一个判断分支为什么是回到doubleQuotedAttributeValue状态
+```js
+function afterQuotedAttributeValue(c) {
+  if(c.match(/[\t\n\f ]/)) {
+    return beforeAttributeName
+  }else if(c == '/') {
+    return selfClosingStartTag
+  }else if(c == '>') {
+    // 下面的currentAttribute.name可能是在跳转到beforeAttributeName后转移过来的，不能省略
+    currentToken[currentAttribute.name] = currentAttribute.value 
+    emit(currentToken)
+    return data
+  }else if(c == EOF) {
+    // 非法
+  }else{
+    currentAttribute.value += c
+    // 此处针对的是属性值“后立即跟一个普通字符的情况，这时认为属性值还未结束（为何不回到singleQuotedAttributeValue状态）
+    return doubleQuotedAttributeValue 
+  }
+}
+```

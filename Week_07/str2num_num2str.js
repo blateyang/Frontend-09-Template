@@ -62,7 +62,7 @@ function NumberToString(num, radix) {
 */
 
 function str2num(str) {
-  const decimalPattern = /^([\+\-])?(\d+)?(?:\.(\d*))?(?:e([\+\-]?)(\d+))?$/i // $:表示忽略当前的匹配组, /i表示忽略大小写
+  const decimalPattern = /^([\+\-])?(\d+)?(?:\.(\d*))?(?:e([\+\-]?)(\d+))?$/i // ?:表示忽略当前的匹配组, /i表示忽略大小写
   const binaryPattern = /^([\+\-])?0b([0-1]+)$/i
   const octalPattern = /^([\+\-])?0o([0-7]+)$/i
   const hexaPattern = /^([\+\-])?0x([0-9a-f]+)$/i

@@ -9,7 +9,7 @@ function getStyle(element) {
       element.style[prop] = parseInt(element.style[prop])
     }
     // 数值型样式值转数值
-    if(element.style[prop].toString().match(/^[0-9\.]+$/)) {
+    if(element.style[prop].toString().match(/^[0-9]+(\.[0-9]+)?$/)) {
       element.style[prop] = parseFloat(element.style[prop])
     }
   }
@@ -126,6 +126,7 @@ function layout(element) {
   let flexLines = [flexLine]
   let mainSpace = style[mainSize]
   let crossSpace = 0
+  // 将元素排进行
   for(let item of items) {
     let itemStyle = getStyle(item)
     if(itemStyle[mainSize] === null || itemStyle[mainSize] === void(0)) {
@@ -232,8 +233,8 @@ function layout(element) {
           let item = items[i]
           let itemStyle = getStyle(item)
           itemStyle[mainStart] = currentBase
-          itemStyle[mainEnd] = itemStyle[mainStart] + itemStyle[mainSize]
-          currentBase += step
+          itemStyle[mainEnd] = itemStyle[mainStart] + mainSign*itemStyle[mainSize]
+          currentBase = itemStyle[mainEnd] + step
         }
       }
     })
@@ -307,13 +308,13 @@ function layout(element) {
         itemStyle[crossStart] = itemStyle[crossEnd] - crossSign*itemStyle[crossSize]
       }
       if(align === "center") {
-        itemStyle[crossStart] = crossBase + crossSign*lineCrossSize/2 - itemStyle[crossSize]/2
+        itemStyle[crossStart] = crossBase + crossSign*(lineCrossSize - itemStyle[crossSize])/2
         itemStyle[crossEnd] = itemStyle[crossStart] + crossSign*itemStyle[crossSize]
       }
       if(align === "stretch") {
         itemStyle[crossStart] = crossBase
         itemStyle[crossEnd] = crossBase + crossSign*lineCrossSize // 此处与视频不同
-        itemStyle[crossSize] = lineCrossSize
+        itemStyle[crossSize] = crossSign*lineCrossSize
       }
     }
     crossBase  += crossSign*(lineCrossSize+step)

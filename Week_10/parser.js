@@ -230,12 +230,11 @@ function tagOpen(c) {
 }
 
 function doctypeCommentTag(c) {
-  if(c == ' ') {
-    return tagOpen
-  }else if(c.match(/[DOCTYPE]/)){
-    return doctypeCommentTag
-  }else{
+  if(c == '>') {
     return data
+  }else{
+    // 忽略<!DOCTYPE xxx>和<!-- xxx -->节点
+    return doctypeCommentTag
   }
 }
 
@@ -258,7 +257,7 @@ function tagName(c) {
     currentToken.tagName += c
     return tagName
   }else if(c == '/') {
-    return selfClosingStartTag
+    return selfClosingTag
   }else if(c == '>'){
     emit(currentToken)
     return data
@@ -286,7 +285,7 @@ function beforeAttributeName(c) {
 
 function afterAttributeName(c) {
   if(c == '/'){
-    return selfClosingStartTag
+    return selfClosingTag
   }else if(c == '>') {
     emit(currentToken)
     return data
@@ -346,7 +345,7 @@ function singleQuotedAttributeValue(c) {
     // 非法
   }else{
     currentAttribute.value += c
-    return doubleQuotedAttributeValue
+    return singleQuotedAttributeValue
   }  
 }
 
@@ -354,7 +353,7 @@ function afterQuotedAttributeValue(c) {
   if(c.match(/[\t\n\f ]/)) {
     return beforeAttributeName
   }else if(c == '/') {
-    return selfClosingStartTag
+    return selfClosingTag
   }else if(c == '>') {
     // 下面的currentAttribute.name可能是在跳转到beforeAttributeName后转移过来的，不能省略
     currentToken[currentAttribute.name] = currentAttribute.value 
@@ -373,7 +372,7 @@ function unquotedAttributeValue(c) {
   if(c.match(/[\t\n\f ]/)) {
     return beforeAttributeName
   }else if(c == '/') {
-    return selfClosingStartTag
+    return selfClosingTag
   }else if(c == '>') {
     // 下面的currentAttribute.name可能是在跳转到beforeAttributeName后转移过来的，不能省略
     currentToken[currentAttribute.name] = currentAttribute.value 
@@ -386,7 +385,7 @@ function unquotedAttributeValue(c) {
     return unquotedAttributeValue 
   }
 }
-function selfClosingStartTag(c) {
+function selfClosingTag(c) {
   if(c == '>') {
     currentToken.isSelfClosing = true
     emit(currentToken)

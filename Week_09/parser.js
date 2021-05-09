@@ -131,6 +131,7 @@ function computeCSS(element) {
             element.computedStyle[declaration.property].value = declaration.value
             element.computedStyle[declaration.property].specificity = sp
           }
+          // 针对同一元素同一css属性的多条规则，取优先级更高或相同但后出现的规则
           if(compareSpecificity(element.computedStyle[declaration.property].specificity, sp) < 0){
             element.computedStyle[declaration.property].value = declaration.value
             element.computedStyle[declaration.property].specificity = sp
@@ -141,6 +142,8 @@ function computeCSS(element) {
     }
   }
 }
+
+// 生成DOM节点构建DOM树
 function emit(token) {
   // console.log(token)
   let top = stack[stack.length-1]
@@ -169,7 +172,7 @@ function emit(token) {
       console.log(token.tagName + " doesn't match top element of stack!")
       return 
     }else{
-      // 获取CSS规则
+      // 解析CSS文本获取CSS规则
       if(token.tagName === "style") {
         addCSSRules(top.children[0].content)
       }
@@ -185,6 +188,7 @@ function emit(token) {
   }
 }
 
+// 定义HTML body解析的各种状态函数
 const EOF = Symbol('EOF')
 
 function data(c) {
@@ -228,12 +232,11 @@ function tagOpen(c) {
 }
 
 function doctypeCommentTag(c) {
-  if(c == ' ') {
-    return tagOpen
-  }else if(c.match(/[DOCTYPE]/)){
-    return doctypeCommentTag
-  }else{
+  if(c == '>') {
     return data
+  }else{
+    // 忽略<!DOCTYPE xxx>和<!-- xxx -->节点
+    return doctypeCommentTag
   }
 }
 
@@ -250,13 +253,13 @@ function endTagOpen(c) {
 }
 
 function tagName(c) {
-  if(c.match(/[\t\n\f ]/)) {
+  if(c.match(/[\t\n\f ]/)) { // \f表示换页符
     return beforeAttributeName
   }else if(c.match(/^[a-zA-Z]$/)) {
     currentToken.tagName += c
     return tagName
   }else if(c == '/') {
-    return selfClosingStartTag
+    return selfClosingTag
   }else if(c == '>'){
     emit(currentToken)
     return data
@@ -284,7 +287,7 @@ function beforeAttributeName(c) {
 
 function afterAttributeName(c) {
   if(c == '/'){
-    return selfClosingStartTag
+    return selfClosingTag
   }else if(c == '>') {
     emit(currentToken)
     return data
@@ -303,7 +306,7 @@ function attributeName(c) {
   }else if(c.match(/[\t\n\f ]/) || c == '/' || c == '>' || c == EOF) {
     return afterAttributeName(c)
   }else if(c == '\u0000' || c == '\"' || c == '\'' || c == '<') {
-    // 非法
+    // 非法,\u0000为二进制的0，在C语言中为字符串结束标志
   }else {
     currentAttribute.name += c
     return attributeName
@@ -344,7 +347,7 @@ function singleQuotedAttributeValue(c) {
     // 非法
   }else{
     currentAttribute.value += c
-    return doubleQuotedAttributeValue
+    return singleQuotedAttributeValue
   }  
 }
 
@@ -352,7 +355,7 @@ function afterQuotedAttributeValue(c) {
   if(c.match(/[\t\n\f ]/)) {
     return beforeAttributeName
   }else if(c == '/') {
-    return selfClosingStartTag
+    return selfClosingTag
   }else if(c == '>') {
     // 下面的currentAttribute.name可能是在跳转到beforeAttributeName后转移过来的，不能省略
     currentToken[currentAttribute.name] = currentAttribute.value 
@@ -371,7 +374,7 @@ function unquotedAttributeValue(c) {
   if(c.match(/[\t\n\f ]/)) {
     return beforeAttributeName
   }else if(c == '/') {
-    return selfClosingStartTag
+    return selfClosingTag
   }else if(c == '>') {
     // 下面的currentAttribute.name可能是在跳转到beforeAttributeName后转移过来的，不能省略
     currentToken[currentAttribute.name] = currentAttribute.value 
@@ -384,7 +387,7 @@ function unquotedAttributeValue(c) {
     return unquotedAttributeValue 
   }
 }
-function selfClosingStartTag(c) {
+function selfClosingTag(c) {
   if(c == '>') {
     currentToken.isSelfClosing = true
     emit(currentToken)

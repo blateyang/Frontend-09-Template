@@ -1,0 +1,1036 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- 由 Microsoft Visio, SVG Export 生成 HTML解析状态迁移图.svg Top Process -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="23.8031in" height="22.8858in"
+		viewBox="0 0 1713.83 1647.78" xml:space="preserve" color-interpolation-filters="sRGB" class="st15">
+	<v:documentProperties v:langID="2052" v:metric="true" v:viewMarkup="false">
+		<v:userDefs>
+			<v:ud v:nameU="msvNoAutoConnect" v:val="VT0(0):26"/>
+		</v:userDefs>
+	</v:documentProperties>
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.48}
+		.st2 {fill:#000000;font-family:宋体;font-size:0.833336em}
+		.st3 {marker-end:url(#mrkr13-15);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.48}
+		.st4 {fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.16}
+		.st5 {fill:#ffffff;stroke:none;stroke-linecap:butt;stroke-width:7.2}
+		.st6 {fill:#000000;font-family:宋体;font-size:0.666664em}
+		.st7 {marker-end:url(#mrkr13-40);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st8 {fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.22935779816514}
+		.st9 {fill:#000000;font-family:宋体;font-size:1.00001em}
+		.st10 {marker-end:url(#mrkr13-68);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st11 {fill:none;marker-end:url(#mrkr13-68);stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st12 {marker-end:url(#mrkr13-109);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.24}
+		.st13 {fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.08695652173913}
+		.st14 {font-size:1em}
+		.st15 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<defs id="Markers">
+		<g id="lend13">
+			<path d="M 3 1 L 0 0 L 3 -1 L 3 1 " style="stroke:none"/>
+		</g>
+		<marker id="mrkr13-15" class="st4" v:arrowType="13" v:arrowSize="2" v:setback="18.75" refX="-18.75" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend13" transform="scale(-6.25,-6.25) "/>
+		</marker>
+		<marker id="mrkr13-40" class="st8" v:arrowType="13" v:arrowSize="2" v:setback="12.6" refX="-12.6" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend13" transform="scale(-4.36,-4.36) "/>
+		</marker>
+		<marker id="mrkr13-68" class="st8" v:arrowType="13" v:arrowSize="2" v:setback="13.08" refX="-13.08" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend13" transform="scale(-4.36,-4.36) "/>
+		</marker>
+		<marker id="mrkr13-109" class="st13" v:arrowType="13" v:arrowSize="2" v:setback="34.5" refX="-34.5" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend13" transform="scale(-11.5,-11.5) "/>
+		</marker>
+	</defs>
+	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
+		<title>顶层流程</title>
+		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
+				v:shadowOffsetY="-8.50394" v:shadowType="1"/>
+		<v:layer v:name="连接线" v:index="0"/>
+		<g id="shape1-1" v:mID="1" v:groupContext="shape" transform="translate(672.661,-634.252)">
+			<title>流程</title>
+			<desc>data</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="35.4331" cy="1630.06" width="70.87" height="35.4331"/>
+			<rect x="0" y="1612.35" width="70.8661" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="25.43" y="1633.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>data</text>		</g>
+		<g id="shape2-4" v:mID="2" v:groupContext="shape" transform="translate(800.22,-634.252)">
+			<title>流程.2</title>
+			<desc>textNode</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="35.4331" cy="1630.06" width="70.87" height="35.4331"/>
+			<rect x="0" y="1612.35" width="70.8661" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="15.43" y="1633.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>textNode</text>		</g>
+		<g id="shape5-7" v:mID="5" v:groupContext="shape" transform="translate(800.22,-571.819)">
+			<title>流程.5</title>
+			<desc>tagOpen</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="35.4331" cy="1630.06" width="70.87" height="35.4331"/>
+			<rect x="0" y="1612.35" width="70.8661" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="17.93" y="1633.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>tagOpen</text>		</g>
+		<g id="shape6-10" v:mID="6" v:groupContext="shape" transform="translate(743.528,-644.882)">
+			<title>数据流</title>
+			<desc>other</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(97):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示发送到某一流程或由流程发出的数据包。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="28.3465" cy="1640.69" width="40" height="17.6036"/>
+			<path d="M0 1640.69 L47.69 1640.69" class="st3"/>
+			<rect v:rectContext="textBkgnd" x="18.3462" y="1635.89" width="20.0006" height="9.59985" class="st5"/>
+			<text x="18.35" y="1643.09" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>other</text>		</g>
+		<g id="shape11-18" v:mID="11" v:groupContext="shape" transform="translate(715.181,-705.118)">
+			<title>流程.11</title>
+			<desc>return</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="24.8031" cy="1635.38" width="49.61" height="24.8031"/>
+			<rect x="0" y="1622.98" width="49.6063" height="24.8031" rx="9" ry="9" class="st1"/>
+			<text x="9.8" y="1638.38" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>return</text>		</g>
+		<g id="shape12-21" v:mID="12" v:groupContext="shape" transform="translate(722.268,-669.685)">
+			<title>数据流.12</title>
+			<desc>EOF</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(97):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示发送到某一流程或由流程发出的数据包。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="7.08661" cy="1630.06" width="40" height="17.6036"/>
+			<path d="M7.09 1647.78 L7.09 1621.35" class="st3"/>
+			<rect v:rectContext="textBkgnd" x="1.08649" y="1625.26" width="12.0004" height="9.59985" class="st5"/>
+			<text x="1.09" y="1632.46" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>EOF</text>		</g>
+		<g id="shape13-28" v:mID="13" v:groupContext="shape" transform="translate(828.567,-634.252)">
+			<title>数据流.13</title>
+			<desc>&#60;,emit</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(97):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示发送到某一流程或由流程发出的数据包。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="7.08661" cy="1661.28" width="40" height="17.6036"/>
+			<path d="M7.09 1647.78 L7.09 1665.78" class="st3"/>
+			<rect v:rectContext="textBkgnd" x="-4.91369" y="1656.48" width="24.0007" height="9.59985" class="st5"/>
+			<text x="-4.91" y="1663.68" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>&#60;,emit</text>		</g>
+		<g id="shape21-35" v:mID="21" v:groupContext="shape" transform="translate(825.732,-668.976)">
+			<title>工作表.21</title>
+			<desc>other</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="19.1339" cy="1634.25" width="38.27" height="27.0624"/>
+			<path d="M0 1647.78 C-40.65 1631.52 28.49 1613.42 40.66 1623.69 C44.25 1626.71 42.89 1632.2 40.98 1638.35 L40.88 1638.7"
+					class="st7"/>
+			<rect v:rectContext="textBkgnd" x="4.13333" y="1627.05" width="30.0009" height="14.4001" class="st5"/>
+			<text x="4.13" y="1637.85" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>other</text>		</g>
+		<g id="shape22-43" v:mID="22" v:groupContext="shape" transform="translate(781.795,-496.063)">
+			<title>流程.22</title>
+			<desc>doctypeCommentTag</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="53.8583" cy="1630.06" width="107.72" height="35.4331"/>
+			<rect x="0" y="1612.35" width="107.717" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="11.36" y="1633.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>doctypeCommentTag</text>		</g>
+		<g id="shape23-46" v:mID="23" v:groupContext="shape" transform="translate(828.567,-571.819)">
+			<title>数据流.23</title>
+			<desc>!</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(97):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示发送到某一流程或由流程发出的数据包。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="7.08661" cy="1667.94" width="40" height="17.6036"/>
+			<path d="M7.09 1647.78 L7.09 1679.1" class="st3"/>
+			<rect v:rectContext="textBkgnd" x="5.08661" y="1663.14" width="4.00012" height="9.59985" class="st5"/>
+			<text x="5.09" y="1670.34" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>!</text>		</g>
+		<g id="shape24-53" v:mID="24" v:groupContext="shape" transform="translate(781.795,-513.78)">
+			<title>数据流.24</title>
+			<desc>&#62;</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(97):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示发送到某一流程或由流程发出的数据包。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="-80.1407" cy="1627.61" width="40" height="17.6036"/>
+			<path d="M0 1647.78 L-80.14 1647.78 L-80.14 1536.31" class="st3"/>
+			<rect v:rectContext="textBkgnd" x="-82.1407" y="1622.81" width="4.00012" height="9.59985" class="st5"/>
+			<text x="-82.14" y="1630.01" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>&#62;</text>		</g>
+		<g id="shape25-60" v:mID="25" v:groupContext="shape" transform="translate(732.898,-534.449)">
+			<title>流程.25</title>
+			<desc>return</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="24.8031" cy="1635.38" width="49.61" height="24.8031"/>
+			<rect x="0" y="1622.98" width="49.6063" height="24.8031" rx="9" ry="9" class="st1"/>
+			<text x="9.8" y="1638.38" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>return</text>		</g>
+		<g id="shape28-63" v:mID="28" v:groupContext="shape" transform="translate(1969.27,2239.27) rotate(135)">
+			<title>工作表.28</title>
+			<path d="M0 1647.78 L22.34 1647.78" class="st10"/>
+		</g>
+		<g id="shape29-69" v:mID="29" v:groupContext="shape" transform="translate(725.402,-554.614)">
+			<title>工作表.29</title>
+			<desc>other</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="61" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>other</text>		</g>
+		<g id="shape32-73" v:mID="32" v:groupContext="shape" transform="translate(863.409,2799.5) rotate(180)">
+			<title>工作表.32</title>
+			<path d="M0 1647.78 C-49.68 1631.52 34.82 1613.42 49.69 1623.69 C54.12 1626.74 52.39 1632.3 50.02 1638.52 L49.9 1638.86"
+					class="st7"/>
+		</g>
+		<g id="shape33-78" v:mID="33" v:groupContext="shape" transform="translate(759.654,-473.11)">
+			<title>工作表.33</title>
+			<desc>other</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="61" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>other</text>		</g>
+		<g id="shape34-82" v:mID="34" v:groupContext="shape" transform="translate(941.953,-571.819)">
+			<title>流程.34</title>
+			<desc>tagName</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="35.4331" cy="1630.06" width="70.87" height="35.4331"/>
+			<rect x="0" y="1612.35" width="70.8661" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="17.93" y="1633.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>tagName</text>		</g>
+		<g id="shape35-85" v:mID="35" v:groupContext="shape" transform="translate(871.087,-582.449)">
+			<title>数据流.35</title>
+			<desc>字母</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(97):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示发送到某一流程或由流程发出的数据包。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="49.6063" cy="1640.69" width="40" height="17.6036"/>
+			<path d="M0 1640.69 L61.87 1640.69" class="st3"/>
+			<rect v:rectContext="textBkgnd" x="41.6064" y="1635.89" width="15.9999" height="9.59985" class="st5"/>
+			<text x="41.61" y="1643.09" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>字母</text>		</g>
+		<g id="shape36-92" v:mID="36" v:groupContext="shape" transform="translate(941.953,-634.252)">
+			<title>流程.36</title>
+			<desc>endTagOpen</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="35.4331" cy="1630.06" width="70.87" height="35.4331"/>
+			<rect x="0" y="1612.35" width="70.8661" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="10.43" y="1633.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>endTagOpen</text>		</g>
+		<g id="shape38-95" v:mID="38" v:groupContext="shape" transform="translate(174.265,-450.135) rotate(-25.0169)">
+			<title>工作表.38</title>
+			<path d="M0 1647.78 L68.39 1647.78" class="st10"/>
+		</g>
+		<g id="shape39-100" v:mID="39" v:groupContext="shape" transform="translate(830.52,-617.795)">
+			<title>工作表.39</title>
+			<desc>/</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="73" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>/</text>		</g>
+		<g id="shape41-104" v:mID="41" v:groupContext="shape" v:layerMember="0" transform="translate(970.299,-634.252)">
+			<title>动态连接线</title>
+			<desc>字母</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="7.08661" cy="1661.28" width="40" height="17.6036"/>
+			<path d="M7.09 1647.78 L7.09 1666.5" class="st12"/>
+			<rect v:rectContext="textBkgnd" x="-0.913294" y="1656.48" width="15.9999" height="9.59985" class="st5"/>
+			<text x="-0.91" y="1663.68" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>字母</text>		</g>
+		<g id="shape51-112" v:mID="51" v:groupContext="shape" transform="translate(998.646,2724.5) rotate(180)">
+			<title>工作表.51</title>
+			<path d="M0 1647.78 C-49.68 1631.52 34.82 1613.42 49.69 1623.69 C54.12 1626.74 52.39 1632.3 50.02 1638.52 L49.9 1638.86"
+					class="st7"/>
+		</g>
+		<g id="shape52-117" v:mID="52" v:groupContext="shape" transform="translate(901.386,-552.756)">
+			<title>工作表.52</title>
+			<desc>字母</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="64" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>字母</text>		</g>
+		<g id="shape60-121" v:mID="60" v:groupContext="shape" transform="translate(890.22,-496.063)">
+			<title>工作表.60</title>
+			<desc>&#62;,emit</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="58" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>&#62;,emit</text>		</g>
+		<g id="shape61-125" v:mID="61" v:groupContext="shape" transform="translate(949.039,-726.378)">
+			<title>流程.61</title>
+			<desc>return</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="24.8031" cy="1635.38" width="49.61" height="24.8031"/>
+			<rect x="0" y="1622.98" width="49.6063" height="24.8031" rx="9" ry="9" class="st1"/>
+			<text x="9.8" y="1638.38" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>return</text>		</g>
+		<g id="shape62-128" v:mID="62" v:groupContext="shape" transform="translate(-677.48,978.094) rotate(-90)">
+			<title>工作表.62</title>
+			<path d="M0 1647.78 L43.34 1647.78" class="st10"/>
+		</g>
+		<g id="shape63-133" v:mID="63" v:groupContext="shape" transform="translate(1065.69,-634.252)">
+			<title>流程.63</title>
+			<desc>beforeAttributeName</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="53.8583" cy="1630.06" width="107.72" height="35.4331"/>
+			<rect x="0" y="1612.35" width="107.717" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="6.36" y="1633.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>beforeAttributeName</text>		</g>
+		<g id="shape64-136" v:mID="64" v:groupContext="shape" transform="translate(1012.82,-644.882)">
+			<title>数据流.64</title>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(97):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示发送到某一流程或由流程发出的数据包。)"/>
+			</v:userDefs>
+			<path d="M0 1640.69 L43.87 1640.69" class="st3"/>
+		</g>
+		<g id="shape65-141" v:mID="65" v:groupContext="shape" transform="translate(965.165,-649.685)">
+			<title>工作表.65</title>
+			<desc>\t\n\f空格</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="51" y="1640.78" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>\t\n\f空格</text>		</g>
+		<g id="shape66-145" v:mID="66" v:groupContext="shape" transform="translate(1065.69,-574.016)">
+			<title>流程.66</title>
+			<desc>selfClosingTag</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="41.5984" cy="1630.06" width="83.2" height="35.4331"/>
+			<rect x="0" y="1612.35" width="83.1969" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="6.6" y="1633.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>selfClosingTag</text>		</g>
+		<g id="shape101-148" v:mID="101" v:groupContext="shape" transform="translate(1019.91,-534.016)">
+			<title>流程.101</title>
+			<desc>return</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="24.8031" cy="1635.38" width="49.61" height="24.8031"/>
+			<rect x="0" y="1622.98" width="49.6063" height="24.8031" rx="9" ry="9" class="st1"/>
+			<text x="9.8" y="1638.38" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>return</text>		</g>
+		<g id="shape102-151" v:mID="102" v:groupContext="shape" transform="translate(2177.97,-91.3923) rotate(45)">
+			<title>工作表.102</title>
+			<path d="M0 1647.78 L12.32 1647.78" class="st10"/>
+		</g>
+		<g id="shape103-156" v:mID="103" v:groupContext="shape" transform="translate(2237.69,2239.58) rotate(135)">
+			<title>工作表.103</title>
+			<path d="M0 1647.78 L14.51 1647.78" class="st10"/>
+		</g>
+		<g id="shape104-161" v:mID="104" v:groupContext="shape" transform="translate(1012.82,-583.547)">
+			<title>数据流.104</title>
+			<desc>/</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(97):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示发送到某一流程或由流程发出的数据包。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="36.3909" cy="1640.69" width="40" height="17.6036"/>
+			<path d="M0 1640.69 L43.87 1640.69" class="st3"/>
+			<rect v:rectContext="textBkgnd" x="34.3909" y="1635.89" width="4.00012" height="9.59985" class="st5"/>
+			<text x="34.39" y="1643.09" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>/</text>		</g>
+		<g id="shape105-168" v:mID="105" v:groupContext="shape" transform="translate(968.709,-561.102)">
+			<title>工作表.105</title>
+			<desc>other</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="61" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>other</text>		</g>
+		<g id="shape106-172" v:mID="106" v:groupContext="shape" transform="translate(1211.24,-634.252)">
+			<title>流程.106</title>
+			<desc>afterAttributeName</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="53.8583" cy="1630.06" width="107.72" height="35.4331"/>
+			<rect x="0" y="1612.35" width="107.717" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="8.86" y="1633.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>afterAttributeName</text>		</g>
+		<g id="shape107-175" v:mID="107" v:groupContext="shape" transform="translate(1175.81,-651.969)">
+			<title>工作表.107</title>
+			<path d="M0 1647.78 L25.62 1647.78" class="st10"/>
+		</g>
+		<g id="shape108-180" v:mID="108" v:groupContext="shape" transform="translate(1115.94,-649.685)">
+			<title>工作表.108</title>
+			<desc>/&#62;EOF</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="61" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>/&#62;EOF</text>		</g>
+		<g id="shape109-184" v:mID="109" v:groupContext="shape" transform="translate(2000.29,2456.56) rotate(151.39)">
+			<title>工作表.109</title>
+			<path d="M0 1647.78 L61.23 1647.78" class="st10"/>
+		</g>
+		<g id="shape110-189" v:mID="110" v:groupContext="shape" transform="translate(1097.86,-615.049)">
+			<title>工作表.110</title>
+			<desc>/</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="73" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>/</text>		</g>
+		<g id="shape119-193" v:mID="119" v:groupContext="shape" transform="translate(686.835,-446.457)">
+			<title>工作表.119</title>
+			<path d="M574.02 1462.11 L574.02 1647.78 L0 1647.78 L0 1470.98" class="st10"/>
+		</g>
+		<g id="shape120-198" v:mID="120" v:groupContext="shape" transform="translate(2749.89,1076.6) rotate(90)">
+			<title>工作表.120</title>
+			<path d="M0 1647.78 L114.91 1647.78" class="st10"/>
+		</g>
+		<g id="shape121-203" v:mID="121" v:groupContext="shape" transform="translate(2589.73,1070.93) rotate(90)">
+			<title>工作表.121</title>
+			<path d="M0 1647.78 L118.81 1647.78" class="st10"/>
+		</g>
+		<g id="shape122-208" v:mID="122" v:groupContext="shape" transform="translate(1045.07,-496.063)">
+			<title>工作表.122</title>
+			<desc>&#62;,emit</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="58" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>&#62;,emit</text>		</g>
+		<g id="shape123-212" v:mID="123" v:groupContext="shape" transform="translate(1211.24,-500.236)">
+			<title>工作表.123</title>
+			<desc>&#62;,emit</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="58" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>&#62;,emit</text>		</g>
+		<g id="shape124-216" v:mID="124" v:groupContext="shape" transform="translate(1161.64,-690.236)">
+			<title>流程.124</title>
+			<desc>return</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="24.8031" cy="1635.38" width="49.61" height="24.8031"/>
+			<rect x="0" y="1622.98" width="49.6063" height="24.8031" rx="9" ry="9" class="st1"/>
+			<text x="9.8" y="1638.38" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>return</text>		</g>
+		<g id="shape125-219" v:mID="125" v:groupContext="shape" transform="translate(4.23607,-203.842) rotate(-44.2748)">
+			<title>工作表.125</title>
+			<path d="M0 1647.78 L16.58 1647.78" class="st10"/>
+		</g>
+		<g id="shape126-224" v:mID="126" v:groupContext="shape" transform="translate(94.3104,2177.41) rotate(-136.813)">
+			<title>工作表.126</title>
+			<path d="M0 1647.78 L17.11 1647.78" class="st10"/>
+		</g>
+		<g id="shape127-229" v:mID="127" v:groupContext="shape" transform="translate(1154.55,-670.315)">
+			<title>工作表.127</title>
+			<desc>other</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="61" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>other</text>		</g>
+		<g id="shape128-233" v:mID="128" v:groupContext="shape" transform="translate(1083.69,-670.236)">
+			<title>工作表.128</title>
+			<desc>=</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="73" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>=</text>		</g>
+		<g id="shape129-237" v:mID="129" v:groupContext="shape" transform="translate(1151.01,-737.008)">
+			<title>流程.129</title>
+			<desc>attributeName</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="41.5984" cy="1630.06" width="83.2" height="35.4331"/>
+			<rect x="0" y="1612.35" width="83.1969" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="9.1" y="1633.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>attributeName</text>		</g>
+		<g id="shape130-240" v:mID="130" v:groupContext="shape" transform="translate(-438.685,485.051) rotate(-72.7185)">
+			<title>工作表.130</title>
+			<path d="M0 1647.78 L56.98 1647.78" class="st10"/>
+		</g>
+		<g id="shape131-245" v:mID="131" v:groupContext="shape" transform="translate(2769.11,326.522) rotate(69.1455)">
+			<title>工作表.131</title>
+			<path d="M0 1647.78 L58.96 1647.78" class="st10"/>
+		</g>
+		<g id="shape132-250" v:mID="132" v:groupContext="shape" transform="translate(1059.24,-710.236)">
+			<title>工作表.132</title>
+			<desc>other</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="61" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>other</text>		</g>
+		<g id="shape133-254" v:mID="133" v:groupContext="shape" transform="translate(1211.24,-702.835)">
+			<title>工作表.133</title>
+			<desc>/&#62;EOF\t\n\f空格</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="31" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>/&#62;EOF\t\n\f空格</text>		</g>
+		<g id="shape134-258" v:mID="134" v:groupContext="shape" transform="translate(1272.19,-669.685)">
+			<title>工作表.134</title>
+			<desc>\t\n\f空格</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="19.1339" cy="1634.25" width="38.27" height="27.0624"/>
+			<path d="M0 1647.78 C-40.65 1631.52 28.49 1613.42 40.66 1623.69 C44.25 1626.71 42.89 1632.2 40.98 1638.35 L40.88 1638.7"
+					class="st7"/>
+			<rect v:rectContext="textBkgnd" x="4.13333" y="1622.25" width="30.0009" height="24.0002" class="st5"/>
+			<text x="4.13" y="1631.25" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>\t\n\f<tspan x="9.13"
+						dy="1.2em" class="st14">空格</tspan></text>		</g>
+		<g id="shape139-266" v:mID="139" v:groupContext="shape" transform="translate(1168.72,-771.85)">
+			<title>工作表.139</title>
+			<desc>other</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="19.1339" cy="1634.25" width="38.27" height="27.0624"/>
+			<path d="M0 1647.78 C-40.65 1631.52 28.49 1613.42 40.66 1623.69 C44.25 1626.71 42.89 1632.2 40.98 1638.35 L40.88 1638.7"
+					class="st7"/>
+			<rect v:rectContext="textBkgnd" x="4.13333" y="1627.05" width="30.0009" height="14.4001" class="st5"/>
+			<text x="4.13" y="1637.85" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>other</text>		</g>
+		<g id="shape140-273" v:mID="140" v:groupContext="shape" transform="translate(1253.76,-788.457)">
+			<title>流程.140</title>
+			<desc>beforeAttributeValue</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="56.6929" cy="1630.06" width="113.39" height="35.4331"/>
+			<rect x="0" y="1612.35" width="113.386" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="6.69" y="1633.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>beforeAttributeValue</text>		</g>
+		<g id="shape141-276" v:mID="141" v:groupContext="shape" transform="translate(67.9384,-282.731) rotate(-45)">
+			<title>工作表.141</title>
+			<path d="M0 1647.78 L23.76 1647.78" class="st10"/>
+		</g>
+		<g id="shape142-281" v:mID="142" v:groupContext="shape" transform="translate(-389.764,978.236) rotate(-90)">
+			<title>工作表.142</title>
+			<path d="M0 1647.78 L107.26 1647.78" class="st10"/>
+		</g>
+		<g id="shape143-286" v:mID="143" v:groupContext="shape" transform="translate(1189.98,-745.354)">
+			<title>工作表.143</title>
+			<desc>=</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="73" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>=</text>		</g>
+		<g id="shape144-290" v:mID="144" v:groupContext="shape" transform="translate(1161.64,-766.906)">
+			<title>工作表.144</title>
+			<desc>=</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="73" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>=</text>		</g>
+		<g id="shape145-294" v:mID="145" v:groupContext="shape" transform="translate(1296.28,-822.047)">
+			<title>工作表.145</title>
+			<desc>\t\n\f空格</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="19.1339" cy="1634.25" width="38.27" height="27.0624"/>
+			<path d="M0 1647.78 C-40.65 1631.52 28.49 1613.42 40.66 1623.69 C44.25 1626.71 42.89 1632.2 40.98 1638.35 L40.88 1638.7"
+					class="st7"/>
+			<rect v:rectContext="textBkgnd" x="4.13333" y="1622.25" width="30.0009" height="24.0002" class="st5"/>
+			<text x="4.13" y="1631.25" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>\t\n\f<tspan x="9.13"
+						dy="1.2em" class="st14">空格</tspan></text>		</g>
+		<g id="shape146-302" v:mID="146" v:groupContext="shape" transform="translate(2825.01,910.772) rotate(90)">
+			<title>工作表.146</title>
+			<path d="M0 1647.78 L11.45 1647.78" class="st10"/>
+		</g>
+		<g id="shape147-307" v:mID="147" v:groupContext="shape" transform="translate(1115.94,-717.008)">
+			<title>工作表.147</title>
+			<desc>“’&#60;\u0000</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="43" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>“’&#60;\u0000</text>		</g>
+		<g id="shape148-311" v:mID="148" v:groupContext="shape" transform="translate(1078.37,-914.173)">
+			<title>流程.148</title>
+			<desc>doubleQuotedAttributeValue</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="41.5984" cy="1630.06" width="83.2" height="35.4331"/>
+			<rect x="0" y="1612.35" width="83.1969" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="4.1" y="1627.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>doubleQuotedAtt<tspan
+						x="14.1" dy="1.2em" class="st14">ributeValue</tspan></text>		</g>
+		<g id="shape149-315" v:mID="149" v:groupContext="shape" transform="translate(1076.6,-850.394)">
+			<title>流程.149</title>
+			<desc>singleQuotedAttributeValue</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="41.5984" cy="1630.06" width="83.2" height="35.4331"/>
+			<rect x="0" y="1612.35" width="83.1969" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="4.1" y="1627.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>singleQuotedAtt<tspan
+						x="14.1" dy="1.2em" class="st14">ributeValue</tspan></text>		</g>
+		<g id="shape150-319" v:mID="150" v:groupContext="shape" transform="translate(1078.37,-786.614)">
+			<title>流程.150</title>
+			<desc>unquotedAttributeValue</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="41.5984" cy="1630.06" width="83.2" height="35.4331"/>
+			<rect x="0" y="1612.35" width="83.1969" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="4.1" y="1627.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>unquotedAttribu<tspan
+						x="24.1" dy="1.2em" class="st14">teValue</tspan></text>		</g>
+		<g id="shape151-323" v:mID="151" v:groupContext="shape" transform="translate(88.6077,1990.89) rotate(-135)">
+			<title>工作表.151</title>
+			<path d="M0 1647.78 L121.31 1647.78" class="st10"/>
+		</g>
+		<g id="shape152-328" v:mID="152" v:groupContext="shape" transform="translate(1161.64,-807.874)">
+			<title>工作表.152</title>
+			<path d="M92.13 1647.78 L35.43 1612.35 L8.41 1596.13" class="st10"/>
+		</g>
+		<g id="shape153-333" v:mID="153" v:groupContext="shape" transform="translate(978.818,2471.67) rotate(-170.395)">
+			<title>工作表.153</title>
+			<path d="M0 1647.78 L83.63 1647.78" class="st10"/>
+		</g>
+		<g id="shape154-338" v:mID="154" v:groupContext="shape" transform="translate(1101.76,-892.913)">
+			<title>工作表.154</title>
+			<desc>“</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="70" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>“</text>		</g>
+		<g id="shape155-342" v:mID="155" v:groupContext="shape" transform="translate(1115.94,-843.307)">
+			<title>工作表.155</title>
+			<desc>‘</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="70" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>‘</text>		</g>
+		<g id="shape156-346" v:mID="156" v:groupContext="shape" transform="translate(1112.03,-809.134)">
+			<title>工作表.156</title>
+			<desc>other</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="61" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>other</text>		</g>
+		<g id="shape157-350" v:mID="157" v:groupContext="shape" transform="translate(1239.59,-880.512)">
+			<title>流程.157</title>
+			<desc>return</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="24.8031" cy="1635.38" width="49.61" height="24.8031"/>
+			<rect x="0" y="1622.98" width="49.6063" height="24.8031" rx="9" ry="9" class="st1"/>
+			<text x="9.8" y="1638.38" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>return</text>		</g>
+		<g id="shape158-353" v:mID="158" v:groupContext="shape" transform="translate(-383.244,821.48) rotate(-90)">
+			<title>工作表.158</title>
+			<path d="M0 1647.78 L47.36 1647.78" class="st10"/>
+		</g>
+		<g id="shape159-358" v:mID="159" v:groupContext="shape" transform="translate(1211.24,-854.567)">
+			<title>工作表.159</title>
+			<desc>/&#62;EOF</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="61" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>/&#62;EOF</text>		</g>
+		<g id="shape160-362" v:mID="160" v:groupContext="shape" transform="translate(949.039,-871.654)">
+			<title>流程.160</title>
+			<desc>afterQuotedAttributeValue</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="41.5984" cy="1630.06" width="83.2" height="35.4331"/>
+			<rect x="0" y="1612.35" width="83.1969" height="35.4331" rx="9" ry="9" class="st1"/>
+			<text x="4.1" y="1627.06" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>afterQuotedAttr<tspan
+						x="16.6" dy="1.2em" class="st14">ibuteValue</tspan></text>		</g>
+		<g id="shape161-366" v:mID="161" v:groupContext="shape" transform="translate(1891.56,2162.86) rotate(150.415)">
+			<title>工作表.161</title>
+			<path d="M0 1647.78 L40.71 1647.78" class="st10"/>
+		</g>
+		<g id="shape162-371" v:mID="162" v:groupContext="shape" transform="translate(282.875,2232.26) rotate(-151.26)">
+			<title>工作表.162</title>
+			<path d="M0 1647.78 L40.3 1647.78" class="st10"/>
+		</g>
+		<g id="shape163-376" v:mID="163" v:groupContext="shape" transform="translate(978.417,-897.087)">
+			<title>工作表.163</title>
+			<desc>“</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="70" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>“</text>		</g>
+		<g id="shape164-380" v:mID="164" v:groupContext="shape" transform="translate(979.339,-864.567)">
+			<title>工作表.164</title>
+			<desc>‘</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="70" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>‘</text>		</g>
+		<g id="shape165-384" v:mID="165" v:groupContext="shape" transform="translate(1097.86,-949.606)">
+			<title>工作表.165</title>
+			<desc>other</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="19.1339" cy="1634.25" width="38.27" height="27.0624"/>
+			<path d="M0 1647.78 C-40.65 1631.52 28.49 1613.42 40.66 1623.69 C44.25 1626.71 42.89 1632.2 40.98 1638.35 L40.88 1638.7"
+					class="st7"/>
+			<rect v:rectContext="textBkgnd" x="4.13333" y="1627.05" width="30.0009" height="14.4001" class="st5"/>
+			<text x="4.13" y="1637.85" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>other</text>		</g>
+		<g id="shape166-391" v:mID="166" v:groupContext="shape" transform="translate(1097.86,-885.236)">
+			<title>工作表.166</title>
+			<desc>other</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="19.1339" cy="1634.25" width="38.27" height="27.0624"/>
+			<path d="M0 1647.78 C-40.65 1631.52 28.49 1613.42 40.66 1623.69 C44.25 1626.71 42.89 1632.2 40.98 1638.35 L40.88 1638.7"
+					class="st7"/>
+			<rect v:rectContext="textBkgnd" x="4.13333" y="1627.05" width="30.0009" height="14.4001" class="st5"/>
+			<text x="4.13" y="1637.85" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>other</text>		</g>
+		<g id="shape167-398" v:mID="167" v:groupContext="shape" transform="translate(1161.57,-931.89)">
+			<title>数据流.167</title>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(97):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示发送到某一流程或由流程发出的数据包。)"/>
+			</v:userDefs>
+			<path d="M0 1647.78 L102.83 1647.78 L102.83 1665.35" class="st3"/>
+		</g>
+		<g id="shape168-403" v:mID="168" v:groupContext="shape" transform="translate(1128.16,-935.472)">
+			<title>工作表.168</title>
+			<desc>EOF\u0000</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="49" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>EOF\u0000</text>		</g>
+		<g id="shape170-407" v:mID="170" v:groupContext="shape" transform="translate(898.754,-852.194) rotate(-9.13018)">
+			<title>工作表.170</title>
+			<path d="M0 1647.78 L70.58 1647.78" class="st10"/>
+		</g>
+		<g id="shape171-412" v:mID="171" v:groupContext="shape" transform="translate(1137.2,-885.315)">
+			<title>工作表.171</title>
+			<desc>EOF \u0000</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="67" y="1634.18" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>EOF<v:newlineChar/><tspan
+						x="58" dy="1.2em" class="st14">\</tspan>u0000</text>		</g>
+		<g id="shape172-417" v:mID="172" v:groupContext="shape" transform="translate(2759.81,862.346) rotate(90)">
+			<title>工作表.172</title>
+			<path d="M0 1647.78 L166.17 1647.78" class="st10"/>
+		</g>
+		<g id="shape173-422" v:mID="173" v:groupContext="shape" transform="translate(1041.17,-759.528)">
+			<title>工作表.173</title>
+			<desc>/</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="73" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>/</text>		</g>
+		<g id="shape175-426" v:mID="175" v:groupContext="shape" transform="translate(998.646,-738.976)">
+			<title>工作表.175</title>
+			<desc>\t\n\f空格</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="51" y="1640.78" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>\t\n\f空格</text>		</g>
+		<g id="shape177-430" v:mID="177" v:groupContext="shape" transform="translate(949.039,-889.37)">
+			<title>数据流.177</title>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(97):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示发送到某一流程或由流程发出的数据包。)"/>
+			</v:userDefs>
+			<path d="M0 1647.78 L-256.24 1647.78 L-256.24 1858.46" class="st3"/>
+		</g>
+		<g id="shape178-435" v:mID="178" v:groupContext="shape" transform="translate(1076.6,2487.69) rotate(180)">
+			<title>工作表.178</title>
+			<path d="M0 1647.78 L371.45 1647.78" class="st10"/>
+		</g>
+		<g id="shape179-440" v:mID="179" v:groupContext="shape" transform="translate(743.22,-887.087)">
+			<title>工作表.179</title>
+			<desc>&#62;,emit</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="58" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>&#62;,emit</text>		</g>
+		<g id="shape180-444" v:mID="180" v:groupContext="shape" transform="translate(743.528,-809.134)">
+			<title>工作表.180</title>
+			<desc>&#62;,emit</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="58" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>&#62;,emit</text>		</g>
+		<g id="shape181-448" v:mID="181" v:groupContext="shape" transform="translate(1101.4,-822.047)">
+			<title>工作表.181</title>
+			<desc>other</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="19.1339" cy="1634.25" width="38.27" height="27.0624"/>
+			<path d="M0 1647.78 C-40.65 1631.52 28.49 1613.42 40.66 1623.69 C44.25 1626.71 42.89 1632.2 40.98 1638.35 L40.88 1638.7"
+					class="st7"/>
+			<rect v:rectContext="textBkgnd" x="4.13333" y="1627.05" width="30.0009" height="14.4001" class="st5"/>
+			<text x="4.13" y="1637.85" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>other</text>		</g>
+		<g id="shape182-455" v:mID="182" v:groupContext="shape" transform="translate(1683.03,2386.77) rotate(158.459)">
+			<title>工作表.182</title>
+			<path d="M0 1647.78 L105.99 1647.78" class="st10"/>
+		</g>
+		<g id="shape183-460" v:mID="183" v:groupContext="shape" transform="translate(894.299,-759.528)">
+			<title>工作表.183</title>
+			<desc>“’&#60;EOF=\u0000</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="38.5" y="1640.78" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>“’&#60;EOF=\u0000</text>		</g>
+		<g id="shape184-464" v:mID="184" v:groupContext="shape" transform="translate(2605.7,414.902) rotate(77.2358)">
+			<title>工作表.184</title>
+			<path d="M0 1647.78 L271.46 1647.78" class="st10"/>
+		</g>
+		<g id="shape290-469" v:mID="290" v:groupContext="shape" transform="translate(936.819,-829.764)">
+			<title>工作表.290</title>
+			<desc>/</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="73" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>/</text>		</g>
+		<g id="shape292-473" v:mID="292" v:groupContext="shape" transform="translate(2607.43,361.76) rotate(75.405)">
+			<title>工作表.292</title>
+			<path d="M0 1647.78 L201.68 1647.78" class="st10"/>
+		</g>
+		<g id="shape293-478" v:mID="293" v:groupContext="shape" transform="translate(970.299,-830.394)">
+			<title>工作表.293</title>
+			<desc>\t\n\f空格</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="51" y="1640.78" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>\t\n\f空格</text>		</g>
+		<g id="shape294-482" v:mID="294" v:groupContext="shape" transform="translate(941.953,-822.047)">
+			<title>流程.294</title>
+			<desc>return</desc>
+			<v:userDefs>
+				<v:ud v:nameU="UMLShapeType" v:val="VT0(100):26"/>
+				<v:ud v:nameU="UMLObjectGUID"/>
+				<v:ud v:nameU="UMLPresOptions"/>
+				<v:ud v:nameU="UMLError" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+				<v:ud v:nameU="visDescription" v:val="VT4(表示将数据从一种形式转换为另一种形式的活动。)"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="24.8031" cy="1635.38" width="49.61" height="24.8031"/>
+			<rect x="0" y="1622.98" width="49.6063" height="24.8031" rx="9" ry="9" class="st1"/>
+			<text x="9.8" y="1638.38" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>return</text>		</g>
+		<g id="shape297-485" v:mID="297" v:groupContext="shape" transform="translate(2618.08,774.709) rotate(90)">
+			<title>工作表.297</title>
+			<path d="M0 1647.78 L18.54 1647.78" class="st10"/>
+		</g>
+		<g id="shape298-490" v:mID="298" v:groupContext="shape" transform="translate(885.26,-850.394)">
+			<title>工作表.298</title>
+			<desc>EOF</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="67" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>EOF</text>		</g>
+		<g id="shape299-494" v:mID="299" v:groupContext="shape" transform="translate(978.803,-907.087)">
+			<title>工作表.299</title>
+			<desc>other</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="19.1339" cy="1634.25" width="38.27" height="27.0624"/>
+			<path d="M0 1647.78 C-40.65 1631.52 28.49 1613.42 40.66 1623.69 C44.25 1626.71 42.89 1632.2 40.98 1638.35 L40.88 1638.7"
+					class="st7"/>
+			<rect v:rectContext="textBkgnd" x="4.13333" y="1627.05" width="30.0009" height="14.4001" class="st5"/>
+			<text x="4.13" y="1637.85" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>other</text>		</g>
+		<g id="shape300-501" v:mID="300" v:groupContext="shape" transform="translate(630.142,-651.969)">
+			<title>工作表.300</title>
+			<path d="M0 1647.78 L32.71 1647.78" class="st10"/>
+		</g>
+		<g id="shape301-506" v:mID="301" v:groupContext="shape" transform="translate(559.276,-649.685)">
+			<title>工作表.301</title>
+			<desc>字符流</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="58" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>字符流</text>		</g>
+		<g id="shape302-510" v:mID="302" v:groupContext="shape" transform="translate(1635.15,-364.544) rotate(33.1113)">
+			<title>工作表.302</title>
+			<path d="M0 1647.78 L68.03 1647.78" class="st10"/>
+		</g>
+		<g id="shape303-515" v:mID="303" v:groupContext="shape" transform="translate(695.874,-613.622)">
+			<title>工作表.303</title>
+			<desc>&#60;</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="73" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>&#60;</text>		</g>
+		<g id="shape304-519" v:mID="304" v:groupContext="shape" transform="translate(871.087,-680.236)">
+			<title>工作表.304</title>
+			<desc>other</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="1637.78" width="152" height="20"/>
+			<rect x="0" y="1627.78" width="152" height="20" class="st11"/>
+			<text x="61" y="1641.38" class="st9" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>other</text>		</g>
+		<g id="shape305-523" v:mID="305" v:groupContext="shape" transform="translate(1087.16,-670.009)">
+			<title>工作表.305</title>
+			<desc>\t\n\f空格</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="19.1339" cy="1634.25" width="38.27" height="27.0624"/>
+			<path d="M0 1647.78 C-40.65 1631.52 28.49 1613.42 40.66 1623.69 C44.25 1626.71 42.89 1632.2 40.98 1638.35 L40.88 1638.7"
+					class="st7"/>
+			<rect v:rectContext="textBkgnd" x="4.13333" y="1622.25" width="30.0009" height="24.0002" class="st5"/>
+			<text x="4.13" y="1631.25" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>\t\n\f<tspan x="9.13"
+						dy="1.2em" class="st14">空格</tspan></text>		</g>
+		<g id="shape306-531" v:mID="306" v:groupContext="shape" transform="translate(2714.12,1053.85) rotate(96.789)">
+			<title>工作表.306</title>
+			<path d="M-0 1641.95 A119.055 14.1732 -6.79 0 0 110.15 1643.06 L110.51 1643.02" class="st7"/>
+		</g>
+	</g>
+</svg>

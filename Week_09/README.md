@@ -6,10 +6,21 @@
 
 ### 1.2 用FSM实现HTML的分析
 1. [HTML标准](https://html.spec.whatwg.org/multipage/parsing.html#tokenization)中已经规定了HTML分析的各种状态，toy-browser只需要实现其中最基础的部分
-
+2. 用FSM分析HTML的框架如下
+```js
+module.exports.parseHTML = function parseHTML(html) {
+  let state = data
+  for(let c of html) {
+    state = state(c)
+  }
+  state = state(EOF) // 添加文件终结符，强制状态机结束
+  return stack.pop()
+}
+```
 ### 1.3 解析标签
 1. 总共有3种标签：开始标签、结束标签和自封闭标签
-2. 解析HTML时的状态迁移画出图来比较直观
+2. 解析HTML时的状态迁移画出图来比较直观（状态迁移图如下）
+![解析HTML的状态迁移图](https://img-blog.csdnimg.cn/20210509180724103.jpg#pic_center)
 
 ### 1.4 创建元素
 1. 在状态转移的过程中要加入业务逻辑
@@ -37,8 +48,8 @@
 3. 注意css库分析CSS规则的格式
 
 ### 2.2 添加CSS计算调用
-1. 当创建一个元素后，立即计算CSS
-2. 理论上，当分析一个元素时，所有CSS规则已经收集完毕（为简化实现，html标签的样式不考虑）
+1. 当创建一个元素后，立即计算CSS（CSS设计的一条潜规则是CSS的所有选择器会尽量保证在startTag进入时判断是否匹配）
+2. 理论上，当分析一个元素时，所有CSS规则已经收集完毕（为简化实现，html标签的内联样式暂不考虑）
 3. 在真实浏览器中，可能遇到写在body中的style标签，需重新计算CSS，暂不考虑
 
 ### 2.3 获取父元素

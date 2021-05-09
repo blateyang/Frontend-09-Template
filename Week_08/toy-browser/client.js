@@ -59,7 +59,7 @@ class Request {
     })
   }
 
-  toString() {
+  toString() {//按照HTTP请求格式拼装请求
     return `${this.method} ${this.path} HTTP/1.1\r
 ${Object.keys(this.headers).map(key => key+': '+this.headers[key]).join('\r\n')}\r
 \r
@@ -244,7 +244,5 @@ void async function() {
   })
   
   let response = await request.send()
-  let dom = parser.parseHTML(response.body)
-  console.log(dom)
-  // console.log(response)
+  console.log(response)
 }() // 立即调用函数
