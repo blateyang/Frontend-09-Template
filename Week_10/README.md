@@ -46,7 +46,73 @@
 2. 实际浏览器中，文字绘制是难点，需要依赖字体库，课程中忽略
 3. 实际浏览器中，还会对一些图层做compositing，课程中也予以忽略
 
-## 3 第三次答疑问题
+## 3 最终渲染结果
+利用我们编写的toy-browser程序，下面html文档的最终渲染结果为
+![toy-browser渲染结果](https://img-blog.csdnimg.cn/20210511222653526.jpg)
+```html
+<html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <script src="./foo.js"></script>
+          <title>Document</title>
+          <style>
+            body {
+              background-color: black;
+            }
+            .container {
+              width: 500px;
+              height: 300px;
+              display: flex;
+              background-color: rgb(255, 255, 255);
+              align-items: center;
+            }
+            .pText {
+              width: 200px;
+            }
+            p.text {
+              display: none;
+            }
+            p.text#name {
+              font-size: 20px;
+              color: red;
+              background-color: blue;
+            }
+            body div #myImg {
+              flex: 1;
+              height: 200px;
+              background-color: rgb(255, 0, 0);
+            }
+            body div #hisImg2 {
+              flex: 2;
+              height: 300px;
+              background-color: rgb(0, 255, 0);
+            }
+         /*   .classImg {
+              margin: 10px;
+            }
+            .myClass {
+              border: 2px;
+            } */
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="pText">
+              <p class="text">Hello world</p>
+              <p class="text" id="name">My name is blateyang</p>
+            </div>
+            <div id="myImg" class="classImg  myClass"></div>
+            <div id="hisImg2" class="classImg  myClass"></div>
+          </div>
+        </body>
+      </html>
+```
+
+## 4 toy-browser总结
+通过三周的学习和实践，我们对浏览器的工作原理有了较为清晰深入地认识。知道了如何利用有限状态机对HTML文档进行词法和语法分析将其转换成一颗DOM树，CSS规则又是在何时被添加到DOM节点中以及如何与节点进行匹配的，如何根据flex属性对DOM节点进行弹性布局生成带位置信息的DOM树，如何将带位置信息和样式信息的DOM树渲染成网页位图。当然上述流程是对浏览器工作流程的一个简化，实际的浏览器工作流程还包括在发送请求时对请求的分析处理（是否跨域、是否发送预检请求）、生成网页位图后因执行js代码引发的重绘和回流等其它工作，布局排版的实现也仅仅是实现了基本的flex布局，还有很多可以扩展完善的地方，比如在flex布局中增加对margin、padding、border等属性的支持。本文的主要目的是通过实现一个简易的toy-browser，加深对浏览器工作原理的认识和理解，有兴趣的朋友可以在此基础上继续完善。
+
+## 5 第三次答疑问题
 1. 解析HTML时afterQuotedAttributeValue状态函数的最后一个判断分支为什么是回到doubleQuotedAttributeValue状态
 ```js
 function afterQuotedAttributeValue(c) {
@@ -68,3 +134,5 @@ function afterQuotedAttributeValue(c) {
   }
 }
 ```
+
+2. flex布局的实现中如果flex item中含有img元素，从浏览器的真实渲染结果看其设置的flex值并未生效，是为什么？

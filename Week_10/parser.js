@@ -94,6 +94,9 @@ function computeCSS(element) {
   let matched = false
   for(let rule of rules){
     //CSS规则也由内向外，简单起见不考虑选择器列表和复杂选择器
+    if(rule.type === "comment") {
+      continue
+    }
     let selectorPaths = rule.selectors[0].split(" ").reverse() 
     if(!match(element, selectorPaths[0])) {
       continue

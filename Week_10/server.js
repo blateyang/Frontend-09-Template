@@ -16,59 +16,62 @@ http.createServer((request, response)=>{
     //  response.end("Hello world!\n")
     response.end(
       `<html lang="en">
-        <head>
-          <meta charset="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <script src="./foo.js"></script>
-          <title>Document</title>
-          <style>
-            .container {
-              width: 500px;
-              height: 300px;
-              display: flex;
-              background-color: rgb(255, 255, 255);
-              alignItems: center;
-            }
-            .pText {
-              width: 200px;
-            }
-            p.text#name {
-              font-size: 20px;
-              color: red;
-              background-color: blue;
-            }
-            body div img {
-              
-              background-color: rgb(255, 0, 0);
-            }
-            body div #myImg {
-              flex: 1;
-              height: 200px;
-            }
-            body div #hisImg2 {
-              flex: 2;
-              height: 300px;
-              background-color: rgb(0, 255, 0);
-            }
-            .classImg {
-              margin: 10px;
-            }
-            .myClass {
-              border: 2px;
-            }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <div class="pText">
-              <p class="text">Hello world</p>
-              <p class="text" id="name">My name is blateyang</p>
-            </div>
-            <img id="myImg" src="xx" class="classImg  myClass"/>
-            <div id="hisImg2" class="classImg  myClass"></div>
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./foo.js"></script>
+        <title>Document</title>
+        <style>
+          body {
+            background-color: black;
+          }
+          .container {
+            width: 500px;
+            height: 300px;
+            display: flex;
+            background-color: rgb(255, 255, 255);
+            align-items: center;
+          }
+          .pText {
+            width: 200px;
+          }
+          p.text {
+            display: none;
+          }
+          p.text#name {
+            font-size: 20px;
+            color: red;
+            background-color: blue;
+          }
+          body div #myImg {
+            flex: 1;
+            height: 200px;
+            background-color: rgb(255, 0, 0);
+          }
+          body div #hisImg2 {
+            flex: 2;
+            height: 300px;
+            background-color: rgb(0, 255, 0);
+          }
+       /*   .classImg {
+            margin: 10px;
+          }
+          .myClass {
+            border: 2px;
+          } */
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="pText">
+            <p class="text">Hello world</p>
+            <p class="text" id="name">My name is blateyang</p>
           </div>
-        </body>
-      </html>`
+          <div id="myImg" class="classImg  myClass"></div>
+          <div id="hisImg2" class="classImg  myClass"></div>
+        </div>
+      </body>
+    </html>`
     )
   })// 标签中不能含义type，否则解析会出错
 }).listen(8080)

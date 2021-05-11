@@ -37,26 +37,26 @@ function layout(element) {
   })
 
   // 给flex的各属性设置默认值
-  if(!style.flexDirection || style.flexDirection === "auto") {
-    style.flexDirection = "row"
+  if(!style["flex-direction"] || style["flex-direction"] === "auto") {
+    style["flex-direction"] = "row"
   }
-  if(!style.justifyContent || style.justifyContent === "auto") {
-    style.justifyContent = "flex-start"
+  if(!style["justify-content"] || style["justify-content"] === "auto") {
+    style["justify-content"] = "flex-start"
   }
-  if(!style.alignContent || style.alignContent === "auto") {
-    style.alignContent = "flex-start"
+  if(!style["align-content"] || style["align-content"] === "auto") {
+    style["align-content"] = "flex-start"
   }
-  if(!style.alignItems || style.alignItems === "auto") {
-    style.alignItems = "stretch"
+  if(!style["align-items"] || style["align-items"] === "auto") {
+    style["align-items"] = "stretch"
   }
-  if(!style.flexWrap || style.flexWrap === "auto") {
-    style.flexWrap = "nowrap"
+  if(!style["flex-wrap"] || style["flex-wrap"] === "auto") {
+    style["flex-wrap"] = "nowrap"
   }
 
   // 根据flexDirection和flexWrap的值设置相关抽象参数
   let mainSize, mainStart, mainEnd, mainBase, mainSign, 
       crossSize, crossStart, crossEnd, crossBase, crossSign
-  if(style.flexDirection === "row") {
+  if(style["flex-direction"] === "row") {
     mainSize = "width"
     mainStart = "left"
     mainEnd = "right"
@@ -66,7 +66,7 @@ function layout(element) {
     crossSize = "height"
     crossStart = "top"
     crossEnd = "bottom"
-  }else if(style.flexDirection === "row-reverse") {
+  }else if(style["flex-direction"] === "row-reverse") {
     mainSize = "width"
     mainStart = "right"
     mainEnd = "left"
@@ -76,7 +76,7 @@ function layout(element) {
     crossSize = "height"
     crossStart = "top"
     crossEnd = "bottom"
-  }else if(style.flexDirection === "column") {
+  }else if(style["flex-direction"] === "column") {
     mainSize = "height"
     mainStart = "top"
     mainEnd = "bottom"
@@ -86,7 +86,7 @@ function layout(element) {
     crossSize = "width"
     crossStart = "left"
     crossEnd = "right"
-  }else if(style.flexDirection === "column-reverse") {
+  }else if(style["flex-direction"] === "column-reverse") {
     mainSize = "height"
     mainStart = "bottom"
     mainEnd = "top"
@@ -97,7 +97,7 @@ function layout(element) {
     crossStart = "left"
     crossEnd = "right"
   }
-  if(style.flexWrap === "wrap-reverse") {
+  if(style["flex-wrap"] === "wrap-reverse") {
     var tmp = crossStart 
     crossStart = crossEnd
     crossEnd = tmp
@@ -137,7 +137,7 @@ function layout(element) {
     }
     if(itemStyle.flex) {// 元素具有flex属性，可伸缩，一定能放进当前行
       flexLine.push(item)
-    }else if(style.flexWrap === "nowrap" && isAutoMainSize) {//不换行且mainSize已计算出,元素依次排入一行
+    }else if(style["flex-wrap"] === "nowrap" && isAutoMainSize) {//不换行且mainSize已计算出,元素依次排入一行
       mainSpace -= itemStyle[mainSize]
       if(itemStyle[crossSize] !== null && itemStyle[crossSize] !== void(0)) {
         crossSpace = Math.max(itemStyle[crossSize], crossSpace)
@@ -166,7 +166,7 @@ function layout(element) {
     }
   }
   flexLine.mainSpace = mainSpace
-  if(style.flexWrap === "nowrap" || isAutoMainSize) {
+  if(style["flex-wrap"] === "nowrap" || isAutoMainSize) {
     // 如果style（即elementStyle）定义了crossSize，将其直接作为flexLine的crossSpace
     flexLine.crossSpace = (style[crossSize] !== undefined) ? style[crossSize] : crossSpace
   }else{
@@ -216,16 +216,16 @@ function layout(element) {
       }else{
         // 根据justifyContent确定currentBase和step,实现非flex元素的排版
         let step = 0 // 间距
-        if(items.justifyContent === "flex-end") {
+        if(items["justify-content"] === "flex-end") {
           currentBase = mainSpace*mainSign + mainBase
         }
-        if(items.justifyContent === "center") {
+        if(items["justify-content"] === "center") {
           currentBase = mainSpace/2*mainSign + mainBase
         }
-        if(items.justifyContent === "space-between") {
+        if(items["justify-content"] === "space-between") {
           step = mainSign*mainSpace/(items.length-1)
         }
-        if(items.justifyContent === "space-around") {
+        if(items["justify-content"] === "space-around") {
           step = mainSign*mainSpace/items.length
           currentBase = mainBase + step/2
         }
@@ -254,7 +254,7 @@ function layout(element) {
     }
   }
 
-  if(style.flexWrap === "wrap-reverse") {
+  if(style["flex-wrap"] === "wrap-reverse") {
     crossBase = style[crossSize]
   }else{
     crossBase = 0
@@ -262,40 +262,40 @@ function layout(element) {
 //  let lineHeight = style[crossSize] / flexLines.length
   // 根据alignContent属性确定crossBase和step
   let step 
-  if(style.alignContent === "flex-start") {
+  if(style["align-content"] === "flex-start") {
     crossBase += 0
     step = 0
   }
-  if(style.alignContent === "flex-end") {
+  if(style["align-content"] === "flex-end") {
     crossBase += crossSpace*crossSign
     step = 0
   }
-  if(style.alignContent === "center") {
+  if(style["align-content"] === "center") {
     crossBase += (crossSpace/2)*crossSign
     step = 0
   }
-  if(style.alignContent === "space-between") {
+  if(style["align-content"] === "space-between") {
     step = (crossBase/ (flexLines.length-1))*crossSign
     crossBase += 0
   }
-  if(style.alignContent === "space-around") {
+  if(style["align-content"] === "space-around") {
     step = (crossBase/ flexLines.length)*crossSign
     crossBase += step/2
   }
-  if(style.alignContent === "stretch") {
+  if(style["align-content"] === "stretch") {
     crossBase += 0
     step = 0
   }
   // 对flexLine进行交叉轴排版
   flexLines.forEach(items => {
-    let lineCrossSize = style.alignContent === "stretch" ? 
+    let lineCrossSize = style["align-content"] === "stretch" ? 
                         items.crossSpace + crossSpace/items.length : // 将剩余空间平均分配给每行
                         items.crossSpace // 每行的交叉轴空间
     // 对行内元素进行交叉轴排版                     
     for(let i=0; i<items.length; i++) {
       let item = items[i]
       let itemStyle = getStyle(item)
-      let align = itemStyle.alignSelf || style.alignItems
+      let align = itemStyle.alignSelf || style["align-items"]
       if(item === null) {
         itemStyle[crossSize] = (align === "stretch") ? lineCrossSize : 0
       }
