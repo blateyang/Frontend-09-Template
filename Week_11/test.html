@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <div id="id" class="class-a class_b class class_c">
+      <p id="div-p" class="text"></p>
+    </div>
+    <div id="id2" class="class"></div>
+    <div id="id3" class="class"></div>
+  </div>
+  <script>
+    // selector:复合选择器（*等单个简单选择器，p.text#name、div.text:first-child等多个串联的简单选择器）
+  function matchCompandSelector(element, selector) {
+    if(!selector || !element.attributes) {// 无attributes的文本节点不处理
+      return false
+    }
+    // 关于有效css标识符可在https://www.w3.org/TR/selectors-3/#attribute-selectors中搜索CSS identifiers参考
+    let regMatches = selector.match(/(\*)|([a-z]+)|(\.[a-z][\w-]+)|(#[a-z][\w-]+)|(\[.*\])|(:[\s\S]+)/gi) // i忽略大小写,g全局匹配,注意第4个括号的.需要转义
+    if(selector == "*") {
+      return true
+    }
+    let attr
+    // let regMatches = [selector.match(/^[a-z]+/i),selector.match(/\.[a-z][\w-]+/i), 
+    //                   selector.match(/#[a-z][\w-]+/i), selector.match(/\[.*\]/i), selector.match(/:[\s\S]+/i)]
+    regMatches = regMatches.reverse() // 考虑可能含有child伪类选择器，而child伪类选择器需要优先判断，因为有跨代关系
+    for(let subSelector of regMatches) {
+      attr = ""
+      if(subSelector.charAt(0) == ":") {  // 伪类选择器
+        if(subSelector.substring(1) == "first-child") {
+          if(element.parentElement.children[0] !== element) {
+            return false
+          }
+          element = element.parentElement // 后面的选择器针对的是父节点
+        }
+        else if(subSelector.substring(1).indexOf("nth-child") > -1) {
+          let matched = subSelector.substring(1).match(/nth-child\((even)|(odd)|((\d+)n\+(\d+))\)/i)
+          if(!matched || (!matched[1] && !matched[2] && !matched[3])) {
+            return false
+          }else{
+            let args1 = 0, args2 = 0
+            if(matched[1] == "even") {
+              args1 = 2
+            }
+            if(matched[2] == "odd") {
+              args1 = 2
+              args2 = 1
+            }
+            if(matched[3]) {
+              args1 = Number(matched[4]) || 0
+              args2 = Number(matched[5]) || 0
+            }
+            let nthChildMatched = false
+            for(let i=0; i<element.parentElement.children.length; i++) {
+              if((i+1) % args1 == args2 && element.parentElement.children[i] === element) {
+                nthChildMatched = true
+                break
+              }
+            }
+            if(!nthChildMatched) {
+              return false
+            }
+            element = element.parentElement // 后面的选择器针对的是父节点
+          }
+        }else if(subSelector.substring(1).indexOf("not") > -1) {
+          let matched = subSelector.substring(1).match(/not\((.*)\)/);
+          if(!matched || !matched[1] || matchCompandSelector(element, matched[1])) {
+            return false
+          }
+        }
+      }
+      else if(subSelector.charAt(0) == "#") {// id选择器
+        attr = element.attributes["id"]
+        if(!attr || attr.value !== subSelector.substring(1)) {
+          return false
+        }
+      }
+      else if(subSelector.charAt(0) == ".") {// class选择器
+        attr = element.attributes["class"]
+        if(!attr || !attr.value.split(/[\t ]+/).includes(subSelector.substring(1))) {
+          return false
+        }
+      }
+      else if(subSelector.charAt(0) == "[") { // 属性选择器
+        var attrMatches = subSelector.match(/([a-z]+)([~\^\$\*\|]?=)(?:["']([\w- ]+)["'])/i)
+        if(!attrMatches[1] || ((!attrMatches[2] && attrMatches[3]) || (attrMatches[2] && !attrMatches[3]))) {
+          return false
+        }else{
+          if(!attrMatches[2] && !attrMatches[3]) { // [attr]
+            if(!attrMatches[1].match(/([a-z]+)/i) || element.attributes[attrMatches[1]]) {
+              return false
+            }
+          }else { // [attr=xxx]
+            var attrVal = element.attributes[attrMatches[1]].value
+            switch(attrMatches[2]) {
+              case "=": 
+                if(attrVal !== attrMatches[3])
+                  return false
+                break
+              case "~=": 
+                if(!attrVal.split(" ").includes(attrMatches[3]))
+                  return false
+                break
+              case "^=": 
+                if(attrVal.indexOf(attrMatches[3]) != 0) 
+                  return false
+                break
+              case "$=": 
+                if(attrVal.lastIndexOf(attrMatches[3]) != attrVal.length - attrMatches[3].length) 
+                  return false
+                break
+              case "*=": 
+                if(attrVal.indexOf(attrMatches[3]) == -1) 
+                  return false
+                break
+              case "|=": 
+                if(!attrVal.split("-")[0] || attrVal.split("-")[0] != attrMatches[3])
+                  return false
+                break
+            }
+          }      
+        }
+      }
+      else if(subSelector !== element.localName) {// 元素选择器
+        return false
+      }
+    }
+    return true
+  }
+
+  function match(selector, element) {
+    // 1. 利用正则分隔复杂选择器（<sp>,>,~,+）为复合选择器列表并逆序排列
+    let compandSelectors = selector.split(/[ \t]+|>|~(?!=)|\+(?!\d)/) // ~(?!=)先行否定断言，~后面跟的不是=才匹配
+    compandSelectors = compandSelectors.reverse()
+    // 2. 根据combinator的类型由内向外循环判断元素及其祖先或前驱是否与复合选择器匹配（除了伪元素，各种简单选择器都要考虑，
+    //    伪类仅考虑:first-child,:nth-child,:not()）
+    if(!matchCompandSelector(element, compandSelectors[0])) {
+      return false
+    }
+    
+    let selectorsMatchedNum = 1
+    let currentElem = element
+    let prevElem = null
+    for(let i=0; i<compandSelectors.length-1; ++i) {
+      if(selector[selector.lastIndexOf(compandSelectors[i])-1] == '>') {
+        prevElem = currentElem.parentElement
+        if(matchCompandSelector(prevElem, compandSelectors[i+1])) {
+          ++selectorsMatchedNum
+        }else{
+          return false
+        }
+      }else if(selector[selector.lastIndexOf(compandSelectors[i])-1] == '+') {
+        prevElem = currentElem.previousElementSibling
+        if(prevElem && matchCompandSelector(prevElem, compandSelectors[i+1])) {
+          ++selectorsMatchedNum
+        }else{
+          return false
+        }
+      }else if(selector[selector.lastIndexOf(compandSelectors[i])-1] == '~') {
+        prevElem = currentElem.previousElementSibling
+        if(prevElem && matchCompandSelector(prevElem, compandSelectors[i+1])) {
+          ++selectorsMatchedNum
+        }else if(!prevElem) {
+          return false
+        }else{
+          i-- // 因下次循环i会+1，为了保持i不变，预-1
+        }
+      }else{
+        prevElem = currentElem.parentElement
+        if(matchCompandSelector(prevElem, compandSelectors[i+1])) {
+          ++selectorsMatchedNum
+        }else{
+          i--
+        }
+      }
+      currentElem = prevElem
+    }
+
+    if(selectorsMatchedNum >= compandSelectors.length) {
+      return true
+    }
+}
+
+  console.log(match("div #id.class", document.getElementById("id")))
+  // 测试属性选择器
+  console.log(match("div #id[class~='class']", document.getElementById("id")))
+  console.log(match("div #id[class^='class-a']", document.getElementById("id")))
+  console.log(match("div #id[class$='class_c']", document.getElementById("id")))
+  console.log(match("div #id[class*='class_b']", document.getElementById("id")))
+  console.log(match("div #id[class|='class']", document.getElementById("id")))
+  // 测试伪类选择器
+  console.log(match("div #id:first-child", document.getElementsByClassName("text")[0]))
+  console.log(match("div #id:nth-child(2n+1)", document.getElementsByClassName("text")[0]))
+  console.log(match("div #id:nth-child(odd)", document.getElementsByClassName("text")[0]))
+  console.log(match("div #id:nth-child(even)", document.getElementsByClassName("text")[0])) //false
+  console.log(match("div p:not(#div-p)", document.getElementsByClassName("text")[0])) // false
+  console.log(match("div p:not(#id)", document.getElementsByClassName("text")[0]))
+
+  // 测试复杂选择器
+  console.log(match("div p", document.getElementsByClassName("text")[0]))
+  console.log(match("div>.class", document.getElementById("id")))
+  console.log(match("div>#id+div", document.getElementById("id2")))
+  console.log(match("div>#id~div", document.getElementById("id3")))
+
+  </script>
+</body>
+</html>
