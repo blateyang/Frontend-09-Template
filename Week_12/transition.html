@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .ball {
+      width: 10px;
+      height: 10px;
+      background-color: black;
+      border-radius: 5px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translateY(180px);
+    }
+  </style>
+</head>
+<body>
+  <p>t:</p><input type="text" id="t" value="5">
+  <p>vx:</p><input type="text" id="vx" value="10">
+  <p>vy:</p><input type="text" id="vy" value="-20">
+  <p>g:</p><input type="text" id="g" value="10">
+  <button id="btn">抛一个球</button>
+  <script>
+    function generateCubicBezier(v, g, t) {
+      var a = v/g;
+      var b = t + v/g;
+      return [[(a/3 + (a+b)/3 - a)/(b-a), (a*a/3 + a*b*2/3 - a*a)/(b*b - a*a)], 
+              [(b/3 + (a+b)/3 - a)/(b-a), (b*b/3 + a*b*2/3 - a*a)/(b*b - a*a)]];
+    }
+
+    function createBall() {
+      console.log("xxx");
+      var ball = document.createElement("div");
+      var t = Number(document.getElementById("t").value);
+      var vx = Number(document.getElementById("vx").value);
+      var vy = Number(document.getElementById("vy").value);
+      var g = Number(document.getElementById("g").value);
+      ball.className = "ball";
+      document.body.appendChild(ball);
+      ball.style.transition  = `left linear ${t}s, top cubic-bezier(${generateCubicBezier(vy, g, t)}) ${t}s`
+
+      setTimeout(function (){
+        ball.style.left = vx*t+"px";
+        ball.style.top = (vy + g*(t**2)) +"px"
+        console.log(ball.style.left, ball.style.top)
+      }, 0)
+    }
+
+    document.getElementById("btn").addEventListener("click", createBall);
+  </script>
+</body>
+</html>

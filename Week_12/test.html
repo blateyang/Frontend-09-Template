@@ -1,0 +1,9 @@
+<html>
+  <head></head>
+  <body>
+    <div style=" width:100px; height:100px; background-color: blue; margin:20px"></div>
+    <div style="overflow:hidden; background-color: pink; margin:30px"><!--与上面的会发生边距折叠（同在body的BFC下），与下面的不会（属于不同的BFC）-->
+      <div style=" width:100px; height:100px; background-color: blue; margin:20px"></div>
+    </div>
+  </body>
+</html>
