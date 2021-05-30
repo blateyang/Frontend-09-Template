@@ -53,12 +53,11 @@ CSS的标准比较散乱，相对完整的标准是CSS2.1，它规定了CSS的�
 CSS的规则比较散乱，可以利用爬虫去W3C网站(https://www.w3.org/TR)爬取相关标准并进行过滤和进一步处理
 1. 获取所有的CSS标准名称和相应链接，序列化为字符串保存起来
 ```js
-JSON.stringfy(([].slice.call(document.getElementById("container").children)).filter(e=>e.getAttribute("data-tag").match(/css/)).map(e => ({name:e.children[1].children[0].innerText, url:e.children[1].children[0].href}))) // map中箭头函数的({})等效于{return {}}
+var standards = ([].slice.call(document.getElementById("container").children)).filter(e=>e.getAttribute("data-tag").match(/css/)).map(e => ({name:e.children[1].children[0].innerText, url:e.children[1].children[0].href})) // map中箭头函数的({})等效于{return {}}
 ```
 2. 针对获取的数据逐条进行分析处理
 为了避免访问各链接进行处理时出现跨域问题，可以在同源页面创建一个iframe，加载相关链接进行分析处理
 ```js
-var standards = [] // []内为第1步得到的json数组字符串
 let iframe = document.createElement("iframe")
 document.body.innerHTML = ""
 document.body.appendChild(iframe)
@@ -148,3 +147,31 @@ ps: empty,last-child,only-child和nth-last-child是无法在startTag进入时计
 
 ## 疑问
 1. 为何第4小节“CSS总论：收集标准”的代码运行时加载完第一个standard，遇到GET 404就停止打印了，不像视频教程中会持续打印
+```javascript
+var standards = JSON.stringify(([].slice.call(document.getElementById("container").children)).filter(e=>e.getAttribute("data-tag").match(/css/)).map(e => ({name:e.children[1].children[0].innerText, url:e.children[1].children[0].href}))) // map中箭头函数的({})等效于{return {}}
+let iframe = document.createElement("iframe")
+document.body.innerHTML = ""
+document.body.appendChild(iframe)
+
+// 监听页面加载，完成后再移除监听
+function happen(element, event) {
+  return new Promise((resolve) => {
+    let handler = () => {
+      element.removeEventListener(element, handler)
+      resolve()
+    }
+    element.addEventListener(element, handler)
+  }).catch(err => {
+    console.log(err)
+  })
+}
+
+void async function() {
+  for(let standard of standards) {
+    iframe.src = standard.url
+    console.log(standard)
+    await happen(iframe, "load")
+  }
+}()
+```
+答：通过console.log发现standard打印出来的是[，原因是多用了JSON.stringify()，把它去掉就行了

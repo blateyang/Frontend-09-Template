@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="myDiv&quot;a&quot;">a</div>
+  <div>&amp;的<em>文本</em>实体<strong>是</strong>&amp;amp;</div>
+  <div id="a" style="width: 100px; height: 100px; background-color: red;">
+    <div id="b" style="width: 50px; height: 50px; background-color: green;"></div>
+  </div>
+    <div id="c">
+      <div>1</div>
+      <p>2</p>
+      <p>3</p>
+      <span>4</span>
+    </div>
+  <button id="openWindow" onclick='window.w = window.open("about:blank", "_blank", "width=100,height=100,left=100,top=100")'>打开窗口</button>
+  <button onclick="w.moveBy(100, 100)">moveBy</button>
+  <button onclick="w.moveTo(100, 100)">moveTo</button>
+  <script>
+    var a = document.getElementById("a")
+    var b = document.getElementById("b")
+    a.addEventListener("click", ()=>{console.log("a")})
+    b.addEventListener("click", ()=>{console.log("b")})
+    a.addEventListener("click", ()=>{console.log("a1")}, true)
+    b.addEventListener("click", ()=>{console.log("b1")}, true)
+
+    let names = Object.getOwnPropertyNames(window)
+    //ECMA 262
+    {
+      let js = new Set()
+      // arr=[];document.querySelectorAll("#menu-toc > ol > li.revealed.revealed-leaf > ol > li > ol.toc > li > a").forEach(e=>arr.push(e.title.match(/(\w+)/)[1]))
+      let objects = ["globalThis", "Infinity", "NaN", "undefined", "eval", "isFinite", "isNaN", "parseFloat", "parseInt", "URI", "Array", "ArrayBuffer", "BigInt", "BigInt64Array", "BigUint64Array", "Boolean", "DataView", "Date", "Error", "EvalError", "Float32Array", "Float64Array", "Function", "Int8Array", "Int16Array", "Int32Array", "Map", "Number", "Object", "Promise", "Proxy", "RangeError", "ReferenceError", "RegExp", "Set", "SharedArrayBuffer", "String", "Symbol", "SyntaxError", "TypeError", "Uint8Array", "Uint8ClampedArray", "Uint16Array", "Uint32Array", "URIError", "WeakMap", "WeakSet", "Atomics", "JSON", "Math", "Reflect", "encodeURI", "encodeURIComponent", "decodeURI", "decodeURIComponent"]
+      objects.forEach(o=>js.add(o))
+      names = names.filter(e => !js.has(e))
+    }
+
+    // events
+    names = names.filter(e => !e.match(/^on/))
+
+    // SubClassOfNode
+    names = names.filter(e=>{
+      try{
+        return !(window[e].prototype instanceof Node)
+      }catch(err) {
+        return true
+      }
+    }).filter(e=>e != "Node")
+
+
+
+    // webkit private
+    names = names.filter(e => !e.match(/^webkit/i))
+    // WebGL
+    names = names.filter(e => !e.match(/^WebGL/i))
+
+    // https://html.spec.whatwg.org/#window
+    // arr=[];document.querySelectorAll("body > pre > code.idl>a[id^='the-window-object']>[g]").forEach(e=>{if(!e.innerText.match(/^Legacy/i)) arr.push(e.innerText)})
+    let windowObjs = ["window", "self", "document", "name", "location", "history", "customElements", "locationbar", "menubar", "personalbar", "scrollbars", "statusbar", "toolbar", "status", "close", "closed", "stop", "focus", "blur", "frames", "length", "top", "opener", "parent", "frameElement", "open", "navigator", "originAgentCluster", "alert", "alert", "confirm", "prompt", "print", "postMessage", "postMessage"]
+    names = names.filter(e=>!windowObjs.includes(e))
+
+    // https://www.w3.org/TR/webaudio/#toc
+    // arr=[]; document.querySelectorAll("#toc > ol > li:nth-child(2) > ol > li > a > span.content > code > span").forEach(e=>console.log(e.innerText))
+    let webaudio = ["BaseAudioContext", "AudioContext", "OfflineAudioContext", "AudioBuffer", "AudioNode", "AudioParam", "AudioScheduledSourceNode", "AnalyserNode", "AudioBufferSourceNode", "AudioDestinationNode", "AudioListener", "AudioProcessingEvent", "BiquadFilterNode", "ChannelMergerNode", "ChannelSplitterNode", "ConstantSourceNode", "ConvolverNode", "DelayNode", "DynamicsCompressorNode", "GainNode", "IIRFilterNode", "MediaElementAudioSourceNode", "MediaStreamAudioDestinationNode", "MediaStreamAudioSourceNode", "MediaStreamTrackAudioSourceNode", "OscillatorNode", "PannerNode", "PeriodicWave", "ScriptProcessorNode", "StereoPannerNode", "WaveShaperNode", "AudioWorklet"]
+    names = names.filter(e=>!webaudio.includes(e))
+
+    
+    names = names.filter(e => !e.match(/^Text/i))
+
+    names = names.filter(e => !e.match(/^Readable/i))
+
+    names = names.filter(e => !e.match(/^CSS/i))
+
+    names = names.filter(e => !e.match(/^DOM/i))
+
+    names = names.filter(e => !e.match(/^USB/i))
+    // 后面省略
+  </script>
+</body>
+</html>

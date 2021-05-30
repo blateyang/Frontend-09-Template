@@ -25,8 +25,8 @@ box-sizing: border-box|content-box
 - 计算盒和文字在行中的位置
 - 计算行的排布
 3. IFC和BFC
-- IFC行内格式化上下文：从左到右排布的上下文
-- BFC块级格式化上下文：从上到下排布的上下文
+- IFC行内格式化上下文：按照水平排布的上下文
+- BFC块级格式化上下文：按照垂直排布的上下文
 
 ### 1.3 正常流的行级排布
 会有几条参考线：
@@ -38,15 +38,15 @@ box-sizing: border-box|content-box
 ![正常流行级排版](https://static001.geekbang.org/resource/image/aa/e3/aa6611b00f71f606493f165294410ee3.png)
 ### 1.4 正常流的块级排布
 1. 几种block：
-- Block Container：里面有BFC的，能容纳正常流的里面就有BFC，如block,table-cell,table-caption,inline-block,flex-item等
-- Block-level Box：外面有BFC的，如inline-block,inline-flex,inline-table,inline-grid等
-- Block Box：里外都有BFC的，如block,flex,table,grid等
+- Block Container：里面有BFC的，描述的是元素和其后代之间的行为，能容纳正常流的里面就有BFC，如block,table-cell,table-caption,inline-block,flex-item等
+- Block-level Box：外面有BFC的，由display为block,list-item,table的块级元素生成的盒子，描述的是元素和其父元素以及兄弟元素之间的行为
+- Block Box：既是Block Container也是Block-level Box,里外都有BFC的，如block等
 2. 设立BFC的规则
-- float
-- absolutly positioned element
+- floats
+- absolutly positioned elements：position为absolute或fixed
 - 非block box的block containers 
 - overflow非visible的block box
-总结：里面能放正常流+overflow非visible的block box(overflow为visible的block box会发生BFC合并)
+总结：里面能容纳正常流的盒+overflow非visible的block box(overflow为visible的block box会发生BFC合并)
 ### 1.5 BFC合并
 BFC合并产生的影响：
 1. BFC与float

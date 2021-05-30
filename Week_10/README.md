@@ -113,7 +113,7 @@
 通过三周的学习和实践，我们对浏览器的工作原理有了较为清晰深入地认识。知道了如何利用有限状态机对HTML文档进行词法和语法分析将其转换成一颗DOM树，CSS规则又是在何时被添加到DOM节点中以及如何与节点进行匹配的，如何根据flex属性对DOM节点进行弹性布局生成带位置信息的DOM树，如何将带位置信息和样式信息的DOM树渲染成网页位图。当然上述流程是对浏览器工作流程的一个简化，实际的浏览器工作流程还包括在发送请求时对请求的分析处理（是否跨域、是否发送预检请求）、生成网页位图后因执行js代码引发的重绘和回流等其它工作，布局排版的实现也仅仅是实现了基本的flex布局，还有很多可以扩展完善的地方，比如在flex布局中增加对margin、padding、border等属性的支持。本文的主要目的是通过实现一个简易的toy-browser，加深对浏览器工作原理的认识和理解，有兴趣的朋友可以在此基础上继续完善。
 
 ## 5 第三次答疑问题
-1. 解析HTML时afterQuotedAttributeValue状态函数的最后一个判断分支为什么是回到doubleQuotedAttributeValue状态
+1. 解析HTML时afterQuotedAttributeValue状态函数的最后一个判断分支为什么是回到doubleQuotedAttributeValue状态而不是singleQuotedAttributeValue状态
 ```js
 function afterQuotedAttributeValue(c) {
   if(c.match(/[\t\n\f ]/)) {
@@ -134,5 +134,4 @@ function afterQuotedAttributeValue(c) {
   }
 }
 ```
-
-2. flex布局的实现中如果flex item中含有img元素，从浏览器的真实渲染结果看其设置的flex值并未生效，是为什么？
+答：这是winter代码的一个bug，可以通过在singleQuotedAttributeValue或doubleQuotedAttributeValue中加一个状态变量，传递给后续的afterQuotedAttributeValue状态机实现区分

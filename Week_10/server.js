@@ -67,7 +67,7 @@ http.createServer((request, response)=>{
             <p class="text">Hello world</p>
             <p class="text" id="name">My name is blateyang</p>
           </div>
-          <div id="myImg" class="classImg  myClass"></div>
+          <img src="viewport.jpg" id="myImg" class="classImg  myClass"/>
           <div id="hisImg2" class="classImg  myClass"></div>
         </div>
       </body>
