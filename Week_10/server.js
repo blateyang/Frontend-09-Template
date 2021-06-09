@@ -9,8 +9,9 @@ http.createServer((request, response)=>{
     body.push(chunk) // 此处若是chunk.toString(),下面的Buffer.concat(body).toString()会报错，因为body非Buffer类型，可改成body.join("")
   })
   request.on("end", ()=>{
+    debugger
     body = Buffer.concat(body).toString() 
-    // body = body.join("")
+    //body = body.join("")
     console.log("body:"+body)
     response.writeHead(200, {"Content-Type": "text/html"})
     //  response.end("Hello world!\n")

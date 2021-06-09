@@ -3,6 +3,7 @@ const images = require("images")
 const parser = require("./parser")
 const layout = require("./layout")
 const render = require("./render")
+const { resolve } = require("path")
 
 class Request {
   // 复制配置对象并添加必要的头
@@ -232,6 +233,7 @@ class ChunkedBodyParser {
     }
 }
 
+
 void async function() {
   let request = new Request({
     method: "POST",
@@ -257,3 +259,4 @@ void async function() {
   viewport.save("Frontend-09-Template\\Week_10\\viewport2.jpg")
   // console.log(response)
 }() // 立即调用函数
+

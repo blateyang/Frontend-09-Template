@@ -1,12 +1,14 @@
 学习笔记
 ## 1  重学HTML
 ### 1.1 HTML定义：XML和SGML
-HTML来源于SGML(Standard General Marked Language)和XML，三者的出现时间顺序依次是SGML,XML,HTML。XML是SGML的子集，HTML早期也是HTML的子集，通过SGML的DTD进行定义。后面W3C试图对HTML进行XML化，又出现了XHTML（基于XML的HTML），但是在发展到XHTML2是由于过于严苛的约束不被社区接受而停止。而HTML随着H5的出现走出了一条独立发展的路。
+HTML来源于SGML(Standard General Marked Language)和XML，三者的出现时间顺序依次是SGML,XML,HTML。XML是SGML的子集，HTML早期也是SGML的子集，通过SGML的DTD进行定义。后面W3C试图对HTML进行XML化，又出现了XHTML（基于XML的HTML），但是在发展到XHTML2是由于过于严苛的约束不被社区接受而停止。而HTML随着H5的出现走出了一条独立发展的路。
 #### 1.1.1 DTD中的文本实体
 文本实体用`&#一串数字;`或者`&符号名;`书写，代表网页中一些特殊的字符，如`&#160;`或`&nbsp;`表示nbsp（no-break space)。以前人们常用nbsp显示多个空格，但因为这个空格在语义上是不会将单词分隔开，因此不建议使用，可以通过css的white-space属性去让多个空格显示出来。
 - 四个必须要记住的文本实体
   1. `&quot;`：引号，在HTML标签的属性值中可用来表示引号
   ```html
+
+
   <div id="myDiv&quot;a&quot;">a</div> <!--<div id="myDiv"a"">a</div>-->
   ```
   2. `&amp;`：显示&，对&符号进行转义
@@ -45,7 +47,7 @@ DOM API是对HTML文档的一个抽象化对象描述
     - HTMLElement
       - HTMLAnchorElement
       - HTMLAreaElement
-      - HTMLBodyElement
+      - HTMLBodyElementsv
       - ...
     - SVGElement
       - SVGAElement
@@ -95,7 +97,7 @@ ps: 为何没有insertAfter？（最小化设计原则，insertAfter可以由app
 1. addEventListener
 用法：
 - EventTarget.addEventListener(event, handler[, useCapture])：useCapture表示是否在浏览器捕获阶段监听，默认为false
-- EventTarget.addEventListener(event, handler[, options])：options为配置json对象，有三个bool参数可设置，capture、once、passive，默认都是false。参考[MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener)，关于passive的作用如看不懂MDN可参考[CSDN](https://blog.csdn.net/hhlljj0828/article/details/79497734)
+- EventTarget.addEventListener(event, handler[, options])：options为配置json对象，有三个bool参数可设置，capture、once、passive，默认都是false。参考[MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener)，passive设为true可以改善移动端的滚屏性能，因为它告诉浏览器监听器不会阻止事件的默认行为，关于passive的作用如看不懂MDN可参考[CSDN](https://blog.csdn.net/hhlljj0828/article/details/79497734)
 
 2. 浏览器的事件机制
 先由外向内捕获（定位触发的节点）再由内向外冒泡（进行呈现）
@@ -129,8 +131,7 @@ Range API适合用在需要对DOM树进行精细或批量操作的场景，功�
 2. 增删操作
 - range.insertNode(document.createTextNode("xxx"))
 - var fragment = range.extractContents(): 将range中的DOM取出得到fragment,fragment相当于内存中的虚拟DOM
-3. 
-面试题：对一个元素的所有子元素逆序
+3. 面试题：对一个元素的所有子元素逆序
 ```html
 <body>
   <div id="a">
@@ -181,13 +182,15 @@ CSSOM是对CSS文档的抽象化对象描述，主要通过document.styleSheets�
 2. 获取各个Rule
 - CSSStyleRule
 - CSSCharsetRule
-- CSSImortRule
+- CSSImportRule
 - ...
 3. getComputedStyle获取元素最终计算出的CSS规则
 - window.getComputedStyle(element[, pseudoElement])
   - element想要获取的元素
   - pseudoElement 可选，伪元素字符串
+
 ps:这个API比较有用，既可以批量获取和修改CSS样式也可以获取伪元素的样式
+
 4. CSSOM API View部分  
 - Window
   - **window.innerHeight, windwo.innerWidth**：网页窗口(viewport)的宽高
@@ -221,6 +224,7 @@ ps:这个API比较有用，既可以批量获取和修改CSS样式也可以获�
 - layout
   - getClientRects()：获取元素的所有盒（包括伪元素的盒）
   - getBoundingClientRect()：获取元素的包围盒
+
 ps: 这两个API常用于获取元素和其父元素的相对位置
 
 ### 2.6 其它浏览器API
@@ -235,4 +239,5 @@ ps: 这两个API常用于获取元素和其父元素的相对位置
   - webaudio
 
 2. 作业：全部API的分类和整理
+
 利用getOwnPropertyNames获取window对象所有属性名称，再以此为线索，边整理边过滤API（通常同类API以相同名字开头）
