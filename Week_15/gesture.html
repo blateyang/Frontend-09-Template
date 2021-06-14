@@ -1,0 +1,33 @@
+<body oncontextmenu="event.preventDefault()"> <!--阻止鼠标右键调出菜单的默认行为-->
+  <!--<script src="./gesture.js"></script>-->
+  <script type="module">
+    import {Gesture} from "./gesture.js"
+    new Gesture(document.documentElement)
+    document.documentElement.addEventListener("tap", ()=>{console.log("tap happen")})
+    document.documentElement.addEventListener("press", (event)=>{
+      console.log("press"); 
+      for(let name of Object.getOwnPropertyNames(event)) console.log(name+":"+event[name])
+    })
+    document.documentElement.addEventListener("pressend", (event)=>{
+      console.log("pressend");
+      for(let name of Object.getOwnPropertyNames(event)) console.log(name+":"+event[name])
+    })
+    document.documentElement.addEventListener("panstart", (event)=>{
+      console.log("panstart"); 
+      for(let name of Object.getOwnPropertyNames(event)) console.log(name+":"+event[name])
+    })
+    document.documentElement.addEventListener("pan", (event)=>{
+      console.log("panhappen"); 
+      for(let name of Object.getOwnPropertyNames(event)) console.log(name+":"+event[name])
+    })
+    document.documentElement.addEventListener("panend", (event)=>{
+      console.log("panend"); 
+      for(let name of Object.getOwnPropertyNames(event)) console.log(name+":"+event[name])
+    })
+    document.documentElement.addEventListener("flick", (event)=>{
+      console.log("flick"); 
+      for(let name of Object.getOwnPropertyNames(event)) console.log(name+":"+event[name])
+    })
+
+  </script>
+</body>                                      
