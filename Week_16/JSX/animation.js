@@ -10,6 +10,7 @@ export class Timeline {
     this[ANIMATIONS] = new Set() //使用Symbol作为属性可以防止外部私自访问
     this[START_TIME] = new Map()
     this.state = "inited"
+    this.animeRunTime = 0 // 时间线中动画的有效运行时间
   }
 
   add(animation) {
@@ -18,7 +19,7 @@ export class Timeline {
   }
 
   start() {
-    if(this.state != "inited")
+    if(this.state !== "inited")
       return // start前必须为intied状态，否则不处理
     this.state = "started"
     let startTime = Date.now()
@@ -38,6 +39,7 @@ export class Timeline {
           this[ANIMATIONS].delete(animation)
           t = animation.duration
         }
+        this.animeRunTime = t;
         if(t > 0)
           animation.receive(t)
       }
@@ -46,8 +48,11 @@ export class Timeline {
     this[TICK]()
   }
 
+    getAnimeRunTime(){ 
+        return this.animeRunTime
+    }
   pause() {
-    if(this.state != "started") 
+    if(this.state !== "started") 
       return 
     this.state = "paused"
     this[PAUSE_START] = Date.now()
@@ -56,7 +61,7 @@ export class Timeline {
   }
 
   resume() {
-    if(this.state != "paused")
+    if(this.state !== "paused")
       return 
     this.state = "started"
     this[PAUSE_TIME] += Date.now() - this[PAUSE_START] // 注意是累加，否则第二次以后会有跳变现象
@@ -66,7 +71,7 @@ export class Timeline {
   reset() {
     this.pause()
     this.state = "inited"
-    let startTime = Date.now()
+    this.time = 0
     this[PAUSE_TIME] = 0
     this[PAUSE_START] = 0
     this[ANIMATIONS] = new Set() //使用Symbol作为属性可以防止外部私自访问
@@ -91,6 +96,7 @@ export class Animation{
   receive(time) {
     let progress = this.timingFunction(time/ this.duration)
     let range = this.endVal - this.startVal
+//    console.log("obj:"+this.object.backgroundImage,"startVal:"+this.startVal, "endVal:"+this.endVal)
     this.object[this.property] = this.template(this.startVal + range*progress)
   }
 }

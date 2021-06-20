@@ -1,6 +1,68 @@
-import {Component} from "./framework.js"
+<head>
+  <style>
+    .carousel {
+      width: 500px;
+      height: 280px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .carousel>div {
+      width: 500px;
+      height: 280px;
+      display: inline-block; /* 让div横向排布 */
+      background-size: contain; /* 让背景图能适配背景尺寸 */
+      transition: ease 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <script>
+function createElement(type, attributes, ...children) {
+  let element
+  if(typeof type === "string")
+    element = new ElementWrapper(type)
+  else 
+    element = new type()
+  for(let attr in attributes) {
+    element.setAttribute(attr, attributes[attr])
+  }
+  for(let child of children) {
+    if(typeof child === "string") {
+      child = new TextWrapper(child)
+    }
+    child.mountTo(element)
+  }
+  return element
+}
 
-export class Carousel extends Component{
+class Component {
+  constructor(type) {
+    // this.root = this.render()
+  }
+  setAttribute(name, value) {
+    this.root.setAttribute(name, value)
+  }
+  appendChild(child) {
+    this.root.appendChild(child)
+  }
+  mountTo(parent) {
+    parent.appendChild(this.root)
+  }
+}
+
+class ElementWrapper extends Component {
+  constructor(type) {
+    this.root = document.createElement(type)
+  }
+}
+
+class TextWrapper extends Component {
+  constructor(content) {
+    this.root = document.createTextNode(content)
+  }
+}
+
+class Carousel extends Component{
   constructor() {
     super()
     this.attributes = Object.create(null) // 创建空对象接收src属性
@@ -33,22 +95,24 @@ export class Carousel extends Component{
 
     // 自动轮播
     let children = this.root.children
-    let timer = setInterval( swiper
-    // // 视频教程所用方法，第一轮播放过后轮播顺序是反的
-    // let timer = setInterval(()=> {
-    //   let nextIdx = (currentIdx + 1) % children.length
+    // let timer = setInterval( swiper
+    // 视频教程所用方法，第一轮播放过后轮播顺序是反的
+    let timer = setInterval(()=> {
+      let nextIdx = (currentIdx + 1) % children.length
 
-    //   // next快速移入viewport的后一个位置
-    //   next.style.transition = "none"
-    //   next.style.transform = `translationX(${100 - nextIdx*100}%)`
+      let current = children[currentIdx]
+      let next = children[nextIdx]
+      // next快速移入viewport的后一个位置
+      next.style.transition = "none"
+      next.style.transform = `translationX(${100 - nextIdx*100}%)`
 
-    //   setTimeout(()=>{// 实现current移出viewport,next移入viewport且next快速切换到current
-    //     next.style.transition = "" // 恢复样式表中的transition设置
-    //     current.style.transform = `translateX(${-100 - currentIdx*100}%)`
-    //     next.style.transform = `translateX(${-nextIdx*100}%)`
-    //     currentIdx = nextIdx
-    //   }, 16)    
-    // }
+      setTimeout(()=>{// 实现current移出viewport,next移入viewport且next快速切换到current
+        next.style.transition = "" // 恢复样式表中的transition设置
+        current.style.transform = `translateX(${-100 - currentIdx*100}%)`
+        next.style.transform = `translateX(${-nextIdx*100}%)`
+        currentIdx = nextIdx
+      }, 16)    
+    }
     , time)
 
     function swiper() {
@@ -134,3 +198,25 @@ export class Carousel extends Component{
     parent.appendChild(this.render())
   }
 }
+
+
+// let a = <Div id="a">
+//   <span>a</span>
+//   <span>b</span>
+//   <span>c</span>
+// </Div>
+let d = [
+  'https://res.devcloud.huaweicloud.com/obsdevui/diploma/8.1.17.002/banner-8.d14241daf518717981c6.jpg',
+  'https://res.devcloud.huaweicloud.com/obsdevui/diploma/8.1.17.002/banner-1.fdbf82d4c2ca7fad3225.jpg',
+  'https://res.devcloud.huaweicloud.com/obsdevui/diploma/8.1.17.002/banner-2.64b1407e7a8db89d6cf2.jpg',
+  'https://res.devcloud.huaweicloud.com/obsdevui/diploma/8.1.17.002/banner-3.ce76c93c7a8a149ce2a2.jpg'
+]
+let a = new Carousel()
+a.setAttribute("src", d)
+
+// document.body.appendChild(a)
+a.mountTo(document.body)
+
+  </script>
+  
+</body>
