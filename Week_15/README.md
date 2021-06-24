@@ -118,7 +118,7 @@ element.addEventListener("touchcancel", event=>{
 
 几点注意：
 1. 鼠标中键和右键的button属性值顺序和移动时的buttons顺序是相反的
-2. 当鼠标多个键同时按下，需要避免多次界面绑定mousemove和mouseup监听，当没有鼠标键按下时再移除mousemove和mouseup监听
+2. 当鼠标多个键同时按下，需要避免多次绑定mousemove和mouseup监听，当所有按下的鼠标键都松手时再移除mousemove和mouseup监听
   
 ## 2.5 派发事件
 

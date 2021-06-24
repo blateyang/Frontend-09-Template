@@ -1,15 +1,15 @@
 学习笔记
 ## 1 组件化
 ### 1.1. 组件的基本知识
-1. 前端两大重点内容
+#### 1.1.1.1 前端两大重点内容
 - 组件化：解决复用问题
 - 架构模式：如MVC、MVVM等，解决前端和数据逻辑层的交互问题
 
-2. 组件的理解
+#### 1.1.1.2 组件的理解
 组件可以看作特殊的对象和模块，它和UI是强相关的，是可复用的界面功能模块。它除了具有对象的property,method,inherit之外，还有attribute,state,children,event等，下图描述了组件组成部分间的关系
-![]()
+![组件组成](https://img-blog.csdnimg.cn/20210622200018529.jpg)
 
-3. Attribute vs Property
+#### 1.1.1.3 Attribute vs Property
 - Attribute强调描述性
 - Property强调从属关系
 在html中，二者含义是不同的
@@ -25,7 +25,7 @@
 </script>
 ```
 
-4. 如何设计组件状态
+#### 1.1.1.4 如何设计组件状态
 
 |   |Markup set|JS set| JS Change| User Input Change|
 |---|---|---|---|---|
@@ -34,7 +34,7 @@
 |state|x|x|x|√|
 |config|x|√|x|x|
 
-5. 生命周期Lifecycle
+#### 1.1.1.5 生命周期Lifecycle
 
 ```mermaid
 graph LR
@@ -166,9 +166,68 @@ export function createElement(type, attributes, ...children) {
   return element
 }
 
-export class Component {
+
+class ElementWrapper{
   constructor(type) {
-    this.root = this.render()
+    this.root = document.createElement(type)
+  }
+  setAttribute(name, value) {
+    this.root.setAttribute(name, value)
+  }
+  appendChild(child) {
+        child.mountTo(this.root);
+  }
+  mountTo(parent) {
+    parent.appendChild(this.root)
+  }
+}
+
+class TextWrapper{
+  constructor(content) {
+    this.root = document.createTextNode(content)
+  }
+    setAttribute(name, value) {
+    this.root.setAttribute(name, value)
+  }
+  appendChild(child) {
+        child.mountTo(this.root);
+  }
+  mountTo(parent) {
+    parent.appendChild(this.root)
+  }
+}
+
+class Div{
+  constructor() {
+    this.root = document.createElement("div")
+  }
+  setAttribute(name, value) {
+    this.root.setAttribute(name, value)
+  }
+  appendChild(child) {
+        child.mountTo(this.root);
+  }
+  mountTo(parent) {
+    parent.appendChild(this.root)
+  }
+}
+
+
+let a = <Div id="a">
+  <span>a</span>
+  <span>b</span>
+  <span>c</span>
+</Div>
+
+// document.body.appendChild(a)
+a.mountTo(document.body)
+```
+
+## 2 动手实现一个轮播组件
+```js
+class Component {
+  constructor(type) {
+    // this.root = this.render()
   }
   setAttribute(name, value) {
     this.root.setAttribute(name, value)
@@ -181,90 +240,51 @@ export class Component {
   }
 }
 
-class ElementWrapper extends Component {
-  constructor(type) {
-    this.root = document.createElement(type)
+class Carousel extends Component{
+  constructor() {
+    super()
+    this.attributes = Object.create(null) // 创建空对象接收src属性
   }
-}
 
-class TextWrapper extends Component {
-  constructor(content) {
-    this.root = document.createTextNode(content)
+  setAttribute(name, value) { // 重写基类的方法，以便将src设置到组件中
+    this.attributes[name] = value
   }
-}
-```
 
-## 2 动手实现一个轮播组件
-### 2.1 自动轮播
-```js
-  // 拷贝第一张图片用于自然过渡
-    let img = document.createElement("div")
-    img.style.backgroundImage = `url(${this.attributes.src[0]})`
-    // img.style.backgroundColor = "blue"
-    this.root.appendChild(img)
-
+  render() {
+//    console.log(this.attributes.src)
+    this.root = document.createElement("div")
+    this.root.classList.add("carousel")
+    for(let item of this.attributes.src) {
+      let img = document.createElement("div")
+      img.style.backgroundImage = `url(${item})`
+      this.root.appendChild(img)
+    }
 
     let currentIdx = 0
     let time = 3000
-    let that = this
-
-    // 自动轮播
     let children = this.root.children
-    let timer = setInterval( swiper
-    // // 视频教程所用方法，第一轮播放过后轮播顺序是反的
-    // let timer = setInterval(()=> {
-    //   let nextIdx = (currentIdx + 1) % children.length
 
-    //   // next快速移入viewport的后一个位置
-    //   next.style.transition = "none"
-    //   next.style.transform = `translationX(${100 - nextIdx*100}%)`
+    // 自动轮播， 每次只需移动viewport中的两张相邻图片
+    let timer = setInterval(()=> {
+      let nextIdx = (currentIdx + 1) % children.length
 
-    //   setTimeout(()=>{// 实现current移出viewport,next移入viewport且next快速切换到current
-    //     next.style.transition = "" // 恢复样式表中的transition设置
-    //     current.style.transform = `translateX(${-100 - currentIdx*100}%)`
-    //     next.style.transform = `translateX(${-nextIdx*100}%)`
-    //     currentIdx = nextIdx
-    //   }, 16)    
-    // }
-    , time)
+      let current = children[currentIdx]
+      let next = children[nextIdx]
+      // next快速移入viewport的后一个位置
+      next.style.transition = "none"
+      next.style.transform = `translateX(${100 - nextIdx*100}%)`
 
-    function swiper() {
-      let children = that.root.children
-      currentIdx++
-      children[currentIdx-1].style.transform = `translateX(${-100*currentIdx}%)`
-      children[currentIdx%children.length].style.transform = `translateX(${-100*currentIdx}%)`
-      // for(let child of children) {
-      //   child.style.transform = `translateX(${-100*currentIdx}%)` // 注意transition是相对于初始样式而非每次移动后的样式的
-      // }
-      if(currentIdx === children.length) {
-        currentIdx = 0
-        // 关闭过渡动画，重置各图片位置
-        for(let child of children) {
-          child.style.transition = "none"
-          child.style.transform = `translateX(0)`
-        }
-        // 在下一帧恢复过渡动画
-        setTimeout(()=>{
-          for(let child of children) {
-            child.style.transition = ""
-          }
-        }, 16)
+      setTimeout(()=>{// 实现current移出viewport,next移入viewport且next快速切换到current
+          next.style.transition = "" // 恢复样式表中的transition设置
+          current.style.transform = `translateX(${-100 - currentIdx*100}%)`
+          next.style.transform = `translateX(${-nextIdx*100}%)`
+        currentIdx = nextIdx
+      }, 16) // 此处设置延时是为了避免立即覆盖前面对next的设置
+    }, time)
 
-          clearInterval(timer)
-          timer = setInterval(swiper, 100) // 让最后一张和第一张短暂过渡
-      }else if(currentIdx === 1) {
-        clearInterval(timer)
-        timer = setInterval(swiper, time)
-      }
-    }
-```
-### 2.2 手动轮播
-```js
-    // 手动控制轮播
+    // 手动轮播
     let position = 0
     this.root.addEventListener("mousedown", (event) => {
-      let children = that.root.children
-      let childrenLen = children.length-1
       let startX = event.clientX
       console.log("mousedown")
       let move = (event)=>{
@@ -273,30 +293,21 @@ class TextWrapper extends Component {
         let current = position
         for(let offset of [-1, 0, 1]) {
           let pos = current + offset
-          pos = (pos + childrenLen) % childrenLen // 将索引-1变为3
-          children[pos].style.transition = "none"
-          children[pos].style.transform = `translateX(${-pos*500 + offset*500 + x}px)`
+          pos = (pos + children.length) % children.length // 将索引-1变为3
+          children[pos].style.transition = "none" // 拖动时关闭过渡效果
+          children[pos].style.transform = `translateX(${-pos*500 + offset*500 + x%500}px)`
         }
-        // for(let child of children) {
-        //   child.style.transition = "none" // 拖拽时关闭过渡动画
-        //   child.style.transform =  `translateX(${-position*500 + x}px)` // -position*500为每次拖动时各图片相对于初始位置的偏移
-        // }
       }
       let up = (event) => {
         let x = event.clientX - startX
-        position = position - Math.round(x/500) // 获取松手时就近的帧索引
+        let current = position - Math.round(x/500) // 获取松手时就近的帧索引
         for(let offset of [0, Math.sign(Math.abs(x)>250 ? x:-x)]) { 
           // 拖动距离大于视口的一半，当前图片和下一张图片跟着移动，否则当前图片和上一张图片跟着移动
-          let pos = position + offset
-          pos = (pos + childrenLen) % childrenLen // 将索引-1变为3
-          children[pos].style.transition = ""
+          let pos = current + offset
+          pos = (pos + children.length) % children.length // 将索引-1变为3
+          children[pos].style.transition = "" // 恢复过渡效果
           children[pos].style.transform = `translateX(${-pos*500 + offset*500}px)`
         }
-        // position = position - Math.round(x/500) // 获取松手时就近的帧索引
-        // for(let child of children) {
-        //   child.style.transition = ""
-        //   child.style.transform =  `translateX(${-position*500}px)`
-        // }
         console.log("mouseup")
         document.removeEventListener("mousemove", move)
         document.removeEventListener("mouseup", up)
@@ -305,8 +316,34 @@ class TextWrapper extends Component {
       document.addEventListener("mousemove", move)
       document.addEventListener("mouseup", up)
     })
+    return this.root
+  }
 
+  mountTo(parent) {
+    parent.appendChild(this.render())
+  }
+}
+
+let d = ['https://res.devcloud.huaweicloud.com/obsdevui/diploma/8.1.17.002/banner-8.d14241daf518717981c6.jpg',
+          'https://res.devcloud.huaweicloud.com/obsdevui/diploma/8.1.17.002/banner-1.fdbf82d4c2ca7fad3225.jpg',
+          'https://res.devcloud.huaweicloud.com/obsdevui/diploma/8.1.17.002/banner-2.64b1407e7a8db89d6cf2.jpg',
+          'https://res.devcloud.huaweicloud.com/obsdevui/diploma/8.1.17.002/banner-3.ce76c93c7a8a149ce2a2.jpg']
+let a = <Carousel src={d}/>
+a.mountTo(document.body)
 ```
+
+注：自动轮播中下面两行代码目的是在每一次轮播时提前将下一张轮播图移到viewport右侧，以便在视觉上能够形成轮播的效果，如下图所示，a,b,c,d是四张图，每一行代表transform后的一次状态，虚线箭头表示transition为none时的移动过程
+```js
+      // next快速移入viewport的后一个位置
+      next.style.transition = "none"
+      next.style.transform = `translateX(${100 - nextIdx*100}%)`
+```
+![](https://img-blog.csdnimg.cn/2021062400075619.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JsYXRleWFuZw==,size_16,color_FFFFFF,t_70#pic_center)
 
 ### 2.3 问题
 1. 按照视频教程里面自动轮播的代码执行为何从第二轮开始轮播顺序是反的？
+
+答：经过助教审查，发现是translateX错写成了translation
+```js
+next.style.transform = `translationX(${100 - nextIdx*100}%)`
+```

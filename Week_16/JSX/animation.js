@@ -43,7 +43,7 @@ export class Timeline {
         if(t > 0)
           animation.receive(t)
       }
-      this[TICK_HANDLER] = requestAnimationFrame(this[TICK])
+      this[TICK_HANDLER] = requestAnimationFrame(this[TICK]) // 通过递归调用的方式让时间线不断向前运行
     }
     this[TICK]()
   }
@@ -71,7 +71,7 @@ export class Timeline {
   reset() {
     this.pause()
     this.state = "inited"
-    this.time = 0
+    this.animeRunTime = 0
     this[PAUSE_TIME] = 0
     this[PAUSE_START] = 0
     this[ANIMATIONS] = new Set() //使用Symbol作为属性可以防止外部私自访问

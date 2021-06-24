@@ -47,7 +47,7 @@ export class Component {
     parent.appendChild(this.root)
   }
   triggerEvent(type, args) {
-    this[ATTRIBUTE]["on"+ type.replace(/^[\s\S]/, x=>x.toUpperCase())](new CustomEvent(type, {detail: args}))
+    this[ATTRIBUTE]["on"+ type.replace(/^[\s\S]/, x=>x.toUpperCase())](new CustomEvent(type, {detail: args})) // eventCallback(event)
   }
 }
 

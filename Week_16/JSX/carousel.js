@@ -38,6 +38,9 @@ export class Carousel extends Component{
       let nextIdx = (this[STATE].position + 1) % children.length
       let current = children[this[STATE].position]
       let next = children[nextIdx]
+      // next快速移入viewport的后一个位置
+      next.style.transition = "none"
+      next.style.transform = `translateX(${500 - nextIdx*500}px)`
 
       tl.add(new Animation(current.style, "transform", -this[STATE].position*500, -500-this[STATE].position*500, 500, 0, ease, v=>`translateX(${v}px)`))
       tl.add(new Animation(next.style, "transform", 500 - nextIdx*500, -nextIdx*500, 500, 0, ease, v=>`translateX(${v}px)`))
@@ -66,7 +69,7 @@ export class Carousel extends Component{
 
     this.root.addEventListener("pan", (event)=>{
       console.log("pan")
-      let x = event.clientX - event.startX - ax
+      let x = event.clientX - event.startX - ax // 减去动画已移动的距离避免拖动时产生跳变
       let current = this[STATE].position - ((x-x%500)/500) // x - x % 500的值一定是500的倍数（自己把自己多余的给减去）
       for(let offset of [-1, 0, 1]) {
         let pos = current + offset

@@ -61,7 +61,7 @@ export class Listener {
         isListeningMouse = false
       }
     }
-    if(!isListeningMouse) {
+    if(!isListeningMouse) { // 避免多次绑定mousemove和mouseup监听
       document.addEventListener("mousemove", mousemove)
       document.addEventListener("mouseup", mouseup)
       isListeningMouse = true
@@ -69,7 +69,7 @@ export class Listener {
     })
     // 触摸操作
     element.addEventListener("touchstart", event=>{
-      for(let touch of event.changedTouches) {
+      for(let touch of event.changedTouches) { // 触摸点可能有多个，通过identifier标识
         // console.log("touchstart")
         let context = Object.create(null) //{startX: null, startY: null, handler: null, isTap: false, isPan: false, isPress: false, isFlick: false, points: null}
         contexts.set(touch.identifier, context)
