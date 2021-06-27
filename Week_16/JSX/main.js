@@ -37,20 +37,20 @@ let a = <Carousel src={d}
                   onClick={event=>window.location.href=event.detail.data.url}/>
 a.mountTo(document.body)
 
-// let b = <Button>
-//   content
-// </Button>
-// b.mountTo(document.body)
+let b = <Button>
+  <span>content</span>
+</Button>
+b.mountTo(document.body)
 
-// let c = <List data={d}>
-//   {(record)=>
-//     <div>
-//       <img src={record.img}/>
-//       <a href={record.url}>{record.title}</a>
-//     </div>
-//   }
-// </List>
-// c.mountTo(document.body)
+let c = <List data={d}>
+  {(record)=>
+    <div>
+      <img src={record.img}/>
+      <a href={record.url}>{record.title}</a>
+    </div>
+  }
+</List>
+c.mountTo(document.body)
 // let tl = new Timeline()
 // tl.add(new Animation({set a(v) {console.log(v)}}, "a", 0, 100, 1000, null))
 // tl.start()

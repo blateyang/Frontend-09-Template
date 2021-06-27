@@ -66,9 +66,9 @@
 ```
 
 ### 1.3 将自动轮播和手动轮播利用时间线结合起来
-1. 在start的回调函数中，停止自动轮播的时间线并清除自动轮播定时器
-2. 在pan的回调函数中，为了能从自动轮播自然过渡到手动轮播，需要加上自动轮播的偏移量
-3. 在panend的回调函数中，原有的取巧处理不适合结合时间线，基于pan的回调函数逻辑进行处理
+1. 在start的事件回调中，停止自动轮播的时间线并清除自动轮播定时器
+2. 在pan的事件回调中，为了能从自动轮播自然过渡到手动轮播，需要加上自动轮播的偏移量
+3. 在panend的事件回调中，原有的取巧处理不适合结合时间线，基于pan的回调函数逻辑进行处理
 
 ```js
    // 手动控制轮播
@@ -132,8 +132,8 @@
 2. 将任意数取余转换到[0, n)区间：(pos%children.length + children.length) % children.length
 
 ## 2 为组件添加更多属性
-1. 将carousel类与父类重复的方法抽取到父类中
-2. 将position属性和attribute属性利用Symbol抽象到父类中
+1. 将carousel类与Component父类重复的方法抽取到父类中
+2. 将position属性和attribute属性利用Symbol抽取到父类中
 3. 给组件添加onChange事件获取position的状态改变
 4. 给组件添加onClick事件跳转到图片链接的网站
 
@@ -141,12 +141,29 @@
 1. 内容型children：组件内所写字符串即代表了children，见Button示例
 ```js
 let b = <Button>
-  content
+  <span>content</span>
 </Button>
 b.mountTo(document.body)
 ```
+
 2. 模板型children：通过模板函数去生成，如列表项，见List示例
 ```js
+import {Component, createElement, ATTRIBUTE} from "./framework.js"
+export class List extends Component{
+  constructor() {
+    super()
+  }
+  render() {
+    this.root = (<div>{this.children}</div>).render() // 要在createElement中加入递归处理数组的逻辑
+    return this.root
+  }
+  appendChild(child) {
+    this.template = (child)
+    this.children = this[ATTRIBUTE].data.map(this.template) // template是传入的模板回调函数
+    this.render()
+  }
+}
+
 let c = <List data={d}>
   {(record)=>
     <div>
@@ -157,3 +174,20 @@ let c = <List data={d}>
 </List>
 c.mountTo(document.body)
 ```
+
+
+两种组件的大致生成逻辑类似，如下图所示：
+```mermaid
+graph TB
+
+A[将jsx语法转换成createELement函数] --> B[在createElement中append子节点]
+B[在createElement函数中append子节点]--> C[在appendChild函数中设置children属性并对组件自身进行render]
+C[在appendChild函数中设置children属性并对组件自身进行render]-->D[在render函数中利用jsx语法构建组件并调用其render]
+D[在render函数中利用jsx语法构建组件并调用其render]-->E[最后返回组件自身]
+```
+
+唯一不同的是模板型children组件的children并不能直接得到，而是要利用传入组件的模板函数作用于组件数据得到
+
+
+## 4 总结
+在本文中我们主要将组件实战化2博客中的手势和动画库应用到了组件实战化1博客中编写的原始轮播图组件中，使我们的轮播图组件能在自动轮播和手动轮播之间自然过渡。由于使用的手势库封装了鼠标操作和触控操作，我们实现的轮播图组件也能够跨端使用。我们还给轮播图组件增加了onChange、onClick事件属性以及表示当前轮播图序号的position属性，可以实现点击轮播图跳转到关联的网页，扩展了组件的功能。最后，简单介绍了给组件添加children的机制，使得我们能够对组件进行嵌套和组合，在组件中加入原生html标签和按照模板生成重复型子组件。
