@@ -1,0 +1,5 @@
+{
+  "presets": ["@babel/preset-env"],
+  "plugins": ["istanbul"],
+  "sourceMaps": "inline" /*不会产生额外的输出文件*/
+}
