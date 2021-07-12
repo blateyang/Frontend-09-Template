@@ -9,7 +9,8 @@ function auth(req, res) {
   getToken(query.code, function(info){
     console.log(info)
     //res.write(JSON.stringify(info))
-    res.write(`<a href='http://localhost:8083/?token=${info.access_token}>publish</a>`)
+//    res.write(`<html><head></head><body><a href='http://localhost:8083/?token=${info.access_token}'>publish</a></body></html>`)
+    res.write(`<html><head></head><body><a href='http://localhost:8083/?token=${info.access_token}'>publish</a></body></html>`)
     res.end()
   })
 }
@@ -49,7 +50,7 @@ function getUser(token, callback) {
     })
     response.on("end", chunk => {
       console.log(body)
-      callback(JSON.stringify(body))
+      callback(JSON.parse(body))
     })
   })
   request.end() // 将请求发出
@@ -59,9 +60,15 @@ function publish(req, res) {
   let query = querystring.parse(req.url.match(/^\/publish\?([\s\S]+)$/)[1])
   getUser(query.token, info=>{
     if(info.login === "blateyang") {
-      req.pipe(unzipper.Extract({ path: '../server/public/resources' }))
+      let fws = fs.createWriteStream("../server/public/resources.zip")
+      req.pipe(fws)
+//      req.pipe(unzipper.Extract({ path: '../server/public/resources' }))
       req.on("end", function(){
         res.end("success!")
+        fws.close()
+        // 下面两句需要放在req.on("end")的回调中，而不能放在req.on("end")的后面，因为是异步的
+        let fsReadable = fs.createReadStream("../server/public/resources.zip")
+        fsReadable.pipe(unzipper.Extract({ path: '../server/public/resources' }))
       })
     }
   })

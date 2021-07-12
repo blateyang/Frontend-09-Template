@@ -85,6 +85,6 @@ archive.pipe(request)
 目的是为了实现发布系统的鉴权功能
 1. 创建github app获取client-id,client-secret
 2. 在publish-tool端，打开https://github.com/login/oauth/authorize
-3. 在publish-server端，auth路由：接受code,用code+client_id+client_secret换token
-4. 在publish-tool端，创建server，接受token，然后点击发布
+3. 在publish-server端，auth路由：接受code,用code+client_id+client_secret换token，返回一个发布链接
+4. 在publish-tool端，创建server，接受发布链接请求中的token，并向publish-server发送带token的publish请求
 5. 在publish-server端，publish路由：用token获取用户信息，检查权限，接受发布
